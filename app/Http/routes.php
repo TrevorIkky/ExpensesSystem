@@ -15,6 +15,8 @@ Route::get('/', function () {
     return 'welcome';
 });  
 Route::get('/login','LoginController@index');
+Route::post('/login/serve', 'LoginController@execute_login');
+Route::get('/login/ok', 'LoginController@successful_login');
 
 
 ?>

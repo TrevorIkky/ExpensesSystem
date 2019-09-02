@@ -1,0 +1,93 @@
+      body {
+          font-family: 'Nunito', sans-serif;
+
+      }
+
+      html {
+          min-height: 100%;
+      }
+
+      #main-container {
+          display: flex;
+          justify-content: space-between;
+          height: 100vh;
+
+
+
+
+      }
+
+      #left-panel {
+          height: 100vh;
+          background: linear-gradient(96deg, #C33764, #1D2671);
+          background-size: cover;
+          min-width: 50%;
+          color: white;
+
+
+
+      }
+
+      #right-panel {
+          height: 100vh;
+          background: white;
+          min-width: 50%;
+          color: black;
+
+      }
+
+
+      #login-info {
+          text-align: center;
+          min-width: 50%;
+          top: 40%;
+          position: relative;
+          margin-left: 20px;
+          margin-right: 20px;
+         
+      }
+
+      #login-form {
+         text-align: center;
+          min-width: 50%;
+          position: relative;
+          margin-left: 20px;
+          margin-right: 20px;
+      }
+
+     #sign-up-btn{
+            text-align: center;
+            color: white;
+           border-style: solid;
+            border-color: white;
+            border-radius: 40px;
+            border-width: 1px;
+           width: 240px;
+           padding-bottom: 5px;
+           margin-left: 25vh;
+           margin-top: 30px;
+           transition: 0.2s;
+           
+           
+          
+      }
+
+      #sign-up-btn:hover{
+            background-color: white;
+            color: black;
+            cursor: pointer;
+      }
+
+      #submit-login{
+            background: #C33764;
+            border-color: transparent;
+            border-radius: 45px;
+            margin-top: 20px;
+            text-align: center;
+      }
+
+    #icon{
+      margin-top: 20px;
+    }
+
+

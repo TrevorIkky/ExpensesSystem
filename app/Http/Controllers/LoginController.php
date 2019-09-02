@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -18,8 +19,34 @@ class LoginController extends Controller
     public function index()
     {
         //
-        return view("login");
+        return view('login');
     }
+
+    public function execute_login(Request $request){
+        $this->validate($request,[
+            'email'   => 'required|email',
+            'password' => 'required|min:1',
+        ]);
+
+        $user_credentials =  array(
+            'email' => $request->get('email') ,
+            'password'   => $request->get('password'));
+        if (Auth::attempt($user_credentials)) {
+            return redirect('login/ok');
+        }else{
+            return back()->with('Error','Authentication Failed');
+        }
+    }
+
+    public function successful_login(){
+        return view('index');
+    }
+
+    public function auth_logout(){
+        Auth::logout();
+        return view('/login');
+    }
+
 
 
 
