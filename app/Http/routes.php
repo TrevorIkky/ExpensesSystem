@@ -12,11 +12,12 @@
 */
 
 Route::get('/', function () {
-    return 'welcome';
+    return view('login');
 });  
 Route::get('/login','LoginController@index');
 Route::post('/login/serve', 'LoginController@execute_login');
 Route::get('/login/ok', 'LoginController@successful_login');
+Route::post('/login/register','LoginController@register');
 
 
 ?>

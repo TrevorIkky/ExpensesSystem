@@ -37,6 +37,7 @@
 	@endforeach
 	@endif
 
+   
 
 	<!--
 		<form id = "login-form"method="POST" action="{{url('login/serve')}}">
@@ -50,6 +51,7 @@
 
 <div id="main-container">
         <div id="left-panel">
+
             <div id="login-info">
                 <h4>Welcome back!</h4>
                 <p>Please enter your username and password so that we can verify its you. If you don't have an account you can sign up for one.</p>
@@ -57,9 +59,19 @@
                     <h5>Sign Up</h5>
                 </div>
             </div>
+
+            <div id="register-info">
+                <h4>Lets go!</h4>
+                <p>Signing up for and account is easy just provide the details indicated and hit sign up</p>
+                <div id="login-btn">
+                    <h5>Login</h5>
+                </div>
+            </div>
+
         </div>
         <div id="right-panel">
             <div id="right-panel" class="valign-wrapper">
+
                 <div id="login-form">
                     <form method="POST" action="{{url('login/serve')}}">
                         {{csrf_field()}}
@@ -73,9 +85,24 @@
                         </button>
                     </form>
                 </div>
+
+
                 <div id="register-form">
-                    <h3>Register input</h3>
+                <form method="POST" action="{{url('login/register')}}">
+                        {{csrf_field()}}
+                        <i id="icon" class="material-icons prefix">account_circle</i>
+                        <input type="text" id="name" name="name" placeholder="name">
+                       <i id="icon" class="material-icons prefix">person_pin</i>
+                        <input type="text" id="email" name="email" placeholder="Email">
+                         <i id="icon" class="material-icons prefix">https</i>
+                        <input type="password" id="password" name="password" placeholder="password">
+
+                        <button id="submit-register" class="waves-effect waves-light btn-large" type="submit" name="action">REGISTER
+                        </button>
+                    </form>
                 </div>
+
+
             </div>
         </div>
 
@@ -85,12 +112,8 @@
 <!--JavaScript at end of body for optimized loading-->
  <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 
- <script type="text/javascript">
- 	$(document).ready(function(){
- 		console.log('document-ready');
- 		$("#register-info").hide();
- 		$("#register-form").hide();
- 	});
+ <script type="text/javascript" src = "/js/login.js">
+ 	
  </script>
 </body>
 </html>

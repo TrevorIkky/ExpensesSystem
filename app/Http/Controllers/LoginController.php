@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Auth;
+use App\User; 
+use Hash;
 
 class LoginController extends Controller
 {
@@ -45,6 +47,34 @@ class LoginController extends Controller
     public function auth_logout(){
         Auth::logout();
         return view('/login');
+    }
+
+
+    public function register(Request $request){
+        $this->validate($request,[
+            'name'  => 'required|min:4',
+            'email' => 'required|email' ,
+            'password' => 'required|min:5'
+        ]);
+
+        User::create([
+            'name'  => $request->get('name'),
+        	'email'  => $request->get('email'),
+        	'password' => Hash::make($request->get('password')),
+        	'remember_token' => str_random(10),
+
+        ]);
+
+        $user_credentials = array('email'=> $request->get('email'),'password'=>$request->get('password'));
+        if(Auth::attempt($user_credentials)){
+            return redirect('login/ok');
+        }else{
+            return back()->with('Error','Login or registration failed please try again.');
+        }
+
+    
+
+
     }
 
 
