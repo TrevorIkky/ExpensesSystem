@@ -18,6 +18,9 @@ Route::get('/login','LoginController@index');
 Route::post('/login/serve', 'LoginController@execute_login');
 Route::get('/login/ok', 'LoginController@successful_login');
 Route::post('/login/register','LoginController@register');
+Route::get('/inventory',function(){
+	return view('inventory');
+});
 
 
 ?>

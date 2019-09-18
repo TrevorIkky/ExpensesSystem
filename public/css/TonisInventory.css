@@ -1,0 +1,64 @@
+
+body {
+    background: #ff000000;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.863), rgba(241, 241, 241, 0.76));
+  }
+
+#inventory{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#card-container{
+    background: #000000d2;
+}
+#cards{
+    margin-top: 5%;
+    margin-left: 20%;
+}
+.card{
+    width: 18rem;
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+}
+.card::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: rgb(192, 0, 250);
+    transition: width .3s;
+    
+}
+
+.card:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
+.card-title{
+    text-align: center;
+    
+}
+.card-img-top{
+    /* height: 50%; */
+    /* width: 25% */
+    width: 50%;
+    height: 12vw;
+    object-fit: cover;
+}
+
+.card-text {
+    word-wrap: break-word;
+    text-align: center;
+}
+.car-deck{
+    top: 20;
+}
+.btn btn-success{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.table table-hover{
+    
+
+}
