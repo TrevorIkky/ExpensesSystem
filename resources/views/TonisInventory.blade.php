@@ -87,8 +87,12 @@
  <thead>
       <tr>
        <th scope="col">Item No.</th>
+       <th scope="col">Food Type</th>
+       <th scope="col">Unit of Measurement</th>
+       <th scope="col">Inventory Amount</th>
+       <th scope="col">Cost per Unit</th>
+       <th scope="col">Total Cost</th>
        <th scope="col">Vendor</th>
-       <th scope="col">Type</th>
        <th scope="col">Quantity</th>
       </tr>
     </thead>
