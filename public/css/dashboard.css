@@ -1,0 +1,149 @@
+:root {
+    --size: 300;
+}
+
+body {
+    margin: 0;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-container {
+    background: linear-gradient(45deg, var(--from), var(--to));
+    min-width: 100vh;
+    min-height: 100vh;
+}
+
+#header-text {
+    font-family: 'Great Vibes', cursive;
+    color: white;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.open-nav-bar {
+    margin-right: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.close {
+    display: inline-block;
+}
+
+.main-container {
+    transition: 0.3s;
+}
+
+.barone,
+.bartwo,
+.barthree {
+    background: white;
+    margin: 8px;
+    width: 35px;
+    height: 2px;
+}
+
+.menus {
+    color: black;
+    height: 100vh;
+    width: 0;
+    background: black;
+    color: white;
+    z-index: 1;
+    overflow-y: hidden;
+    position: fixed;
+    right: 0;
+    transition: 0.3s;
+}
+
+#close-nav-bar {
+    margin: 20px;
+    cursor: pointer;
+}
+
+.menus ul li {
+    margin-left: 20px;
+    list-style-type: none;
+    font-family: 'Nunito Sans', sans-serif;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display: block;
+}
+
+#pie-chart {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    margin: 60px auto;
+}
+
+.pie-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.segment {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.animate {
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    ;
+    transition: 0.2s;
+}
+
+.animate:hover {
+    transform: scale(1.2);
+    transform-origin: 50% 50%;
+}
+
+#seg-one {
+    background-color: rgba(15, 0, 228, 0.938);
+    -webkit-clip-path: polygon(50% 0, 50% 50%, 100% 41.2%, 100% 0);
+    clip-path: polygon(50% 0, 50% 50%, 100% 41.2%, 100% 0);
+}
+
+#seg-two {
+    background-color: rgb(12, 219, 57);
+    -webkit-clip-path: polygon(50% 50%, 100% 41.2%, 100% 100%, 63.4% 100%);
+    clip-path: polygon(50% 50%, 100% 41.2%, 100% 100%, 63.4% 100%);
+}
+
+#seg-three {
+    background-color: rgb(141, 6, 6);
+    -webkit-clip-path: polygon(50% 50%, 36.6% 100%, 63.4% 100%);
+    clip-path: polygon(50% 50%, 36.6% 100%, 63.4% 100%);
+}
+
+#seg-four {
+    background-color: rgb(255, 13, 182);
+    -webkit-clip-path: polygon(50% 50%, 0 100%, 36.6% 100%);
+    clip-path: polygon(50% 50%, 0 100%, 36.6% 100%);
+}
+
+#seg-five {
+    background-color: rgb(122, 124, 7);
+    -webkit-clip-path: polygon(50% 50%, 0 36.6%, 0 100%);
+    clip-path: polygon(50% 50%, 0 36.6%, 0 100%);
+}
+
+#seg-six {
+    background-color: rgb(21, 152, 204);
+    -webkit-clip-path: polygon(50% 50%, 0 36.6%, 0 0, 50% 0);
+    clip-path: polygon(50% 50%, 0 36.6%, 0 0, 50% 0);
+}

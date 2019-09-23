@@ -23,4 +23,10 @@ Route::get('/inventory',function(){
 });
 
 
+//ToDO... remove dashboard route
+Route::get('dashboard',function(){
+return view('index');
+});
+
+
 ?>
