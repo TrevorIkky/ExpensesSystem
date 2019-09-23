@@ -76,20 +76,24 @@
                   </div>
         </div>
         </div>
-        <button type="button" class="btn btn-success">View All</button>
+        <button type="button" class="btn btn-success" onclick="document.getElementById">View All</button>
    </div>      
   </div>
 </div>
 
 <div id="InventoryTable">
- <table class="table table-hover">
+ <table class="table table-bordered">
     
  <thead>
       <tr>
-       <th scope="col">Item No.</th>
-       <th scope="col">Vendor</th>
-       <th scope="col">Type</th>
-       <th scope="col">Quantity</th>
+      <th id="table-head-text" scope="col">Item No.</th>
+      <th id="table-head-text" scope="col">Food Type</th>
+      <th id="table-head-text" scope="col">Unit of Measurement</th>
+      <th id="table-head-text" scope="col">Inventory Amount</th>
+      <th id="table-head-text" scope="col">Cost per Unit</th>
+      <th id="table-head-text" scope="col">Total Cost</th>
+      <th id="table-head-text" scope="col">Vendor</th>
+      <th id="table-head-text" scope="col">Quantity</th>
       </tr>
     </thead>
   
