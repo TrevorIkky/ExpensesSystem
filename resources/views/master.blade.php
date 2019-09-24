@@ -21,8 +21,8 @@
         <div id="menus" class="menus">
             <img id="close-nav-bar" width = "20" height = "20" src="/images/delete.png"/>
                 <ul>
-                     <li>OVERVIEW</li>
-                     <li>INVENTORY</li>
+                     <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
+                     <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
                      <li>PAYMENTS</li>
                      <li>EXPENSES</li>
                 </ul>

@@ -76,14 +76,15 @@
                   </div>
         </div>
         </div>
-        <button type="button" class="btn btn-success" onclick="document.getElementById">View All</button>
+        <button type="button" class="btn btn-success" onclick="view()">View All</button>
    </div>      
   </div>
 </div>
 
 <div id="InventoryTable">
- <table class="table table-bordered">
-    
+<input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type"> 
+ <table class="table table-bordered" id="Inventory-Table">
+ 
  <thead>
       <tr>
       <th id="table-head-text" scope="col">Item No.</th>
@@ -95,14 +96,58 @@
       <th id="table-head-text" scope="col">Vendor</th>
       <th id="table-head-text" scope="col">Quantity</th>
       </tr>
-    </thead>
+  </thead>
+  <tbody id="inventory-table">
+  <tr>
+      <th scope="row">1</th>
+      <td>Drink</td>
+      <td>pcs</td>
+      <td>30</td>
+      <td>25</td>
+      <td>750</td>
+      <td>Mama Soda</td>
+      <td>30</td>
+  </tr>
+  <tr>
+      <th scope="row">2</th>
+      <td>Vegetable</td>
+      <td>lcs</td>
+      <td>30</td>
+      <td>5</td>
+      <td>150</td>
+      <td>Wamboga</td>
+      <td>30</td>
+  </tr>
   
-  <tbody>
- 
 
-   </tbody>
+  </tbody>
 </table>
 </div>
+<script type="text/javascript" src="{{url ('js/inventory.js') }}" defer></script>
+
+<script type="text/javascript" src = "/js/inventory.js"></script>
+<script>
+  function search() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("inventory-search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("Inventory-Table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+
+  </script>
 </body>
 
 

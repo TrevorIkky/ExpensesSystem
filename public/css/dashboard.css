@@ -83,9 +83,9 @@ body {
 
 #pie-chart {
     position: absolute;
-    width: 400px;
-    height: 400px;
-    margin: 60px auto;
+    width: 450px;
+    height: 450px;
+    margin: 80px auto;
 }
 
 .pie-container {
@@ -111,7 +111,6 @@ body {
     transform: scale(1.2);
     transform-origin: 50% 50%;
 }
-
 #seg-one {
     background-color: rgba(15, 0, 228, 0.938);
     -webkit-clip-path: polygon(50% 0, 50% 50%, 100% 41.2%, 100% 0);
