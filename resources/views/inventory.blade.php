@@ -42,7 +42,7 @@
         <div class="card " >
                   <img src="images/drinks.jpg" class="card-img-top" alt="drinks" >
                   <div class="card-body">
-                    <h5 class="card-title">Drinks</h5>
+                    <h5 class="card-title" onclick="view()">Drinks</h5>
                     <p class="card-text">Views drinks in stock</p>
                   </div>
                   <div class="card-footer">

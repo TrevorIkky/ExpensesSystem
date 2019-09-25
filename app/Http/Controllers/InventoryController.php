@@ -16,4 +16,15 @@ class InventoryController extends Controller
         return view('inventory',['users'=>$users]);
      }
 
+     public function drinks() {
+        $users = DB::table('drinks')->get();
+
+        return view('inventory',['users'=>$users]);
+     }
+    
+     public function fooditems() {
+        $users = DB::table('fooditems')->get();
+
+        return view('inventory',['users'=>$users]);
+     }
 }
