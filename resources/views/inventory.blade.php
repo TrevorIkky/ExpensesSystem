@@ -98,17 +98,19 @@
       </tr>
   </thead>
   <tbody id="inventory-table">
+  @foreach ($users as $user)
   <tr>
-      <th scope="row">1</th>
-      <td>Drink</td>
-      <td>pcs</td>
-      <td>30</td>
-      <td>25</td>
-      <td>750</td>
-      <td>Mama Soda</td>
-      <td>30</td>
+      <th scope="row">{{ $user->foodTypeID }}</th>
+      <td>{{ $user->foodType }}</td>
+      <td>{{ $user->unitOfMeasurement }}</td>
+      <td>{{ $user->inventoryAmount }}</td>
+      <td>{{ $user->costPerUnit }}</td>
+      <td>{{ $user->totalCost }}</td>
+      <td>{{ $user->vendor }}</td>
+      <td>{{ $user->quantity }}</td>
   </tr>
-  <tr>
+  @endforeach
+  <!-- <tr>
       <th scope="row">2</th>
       <td>Vegetable</td>
       <td>lcs</td>
@@ -118,7 +120,7 @@
       <td>Wamboga</td>
       <td>30</td>
   </tr>
-  
+   -->
 
   </tbody>
 </table>
@@ -131,7 +133,7 @@
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("inventory-search");
   filter = input.value.toUpperCase();
-  table = document.getElementById("Inventory-Table");
+  table = document.getElementById("inventory-table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
@@ -145,6 +147,15 @@
     }       
   }
 }
+
+function view(){
+        var x=document.getElementById("InventoryTable");
+        if(x.style.display=="none"){
+            x.style.display="block";
+        }else{
+            x.style.display="none";
+        }
+    }
 
 
   </script>

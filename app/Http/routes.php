@@ -28,5 +28,6 @@ Route::get('dashboard',function(){
 return view('index');
 });
 
+Route::get('inventory','InventoryController@index');
 
 ?>
