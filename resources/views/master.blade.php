@@ -23,18 +23,17 @@
                 <ul>
                      <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
                      <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
-                     <li>PAYMENTS</li>
+                     <li><a href = "{{url('/add')}}">PAYMENTS</a></li>
                      <li>EXPENSES</li>
                 </ul>
             </div>
-   <div id="main-container" class="main-container" style="--from: #ff00cc; --to:#333399">
-  
+   <div id="main-container" class="main-container">
        <div class="toolbar">
            <h4 id = "header-text">Toni's Kitchen</h4>
            <div id="open-nav-bar" class="open-nav-bar">
-               <div class="barone"></div>
-               <div class="bartwo"></div>
-               <div class="barthree"></div>
+               <div class="bar"></div>
+               <div class="bar"></div>
+               <div class="bar"></div>
            </div>
        </div>
        @yield('main-content')

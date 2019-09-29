@@ -11,19 +11,7 @@
 |
 */
 
-/*Route::get('/', function () {
-    //return view('welcome');
-    return 'MENU';
-});
 
-Route::get('/menu',function(){
-    return view('Pages.menu');
-});
-
-Route::get('/menu',function(){
-    return view('Pages.menu');
-});
-*/
 
 Route::get('/index', 'PagesController@index');
 Route::get('/cart', 'PagesController@cart');
@@ -33,4 +21,5 @@ Route::get('/Total', 'PagesController@Total');
 
 
 Route::resource('posts','PostsController');
+
 

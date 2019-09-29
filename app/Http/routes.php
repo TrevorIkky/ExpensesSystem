@@ -29,4 +29,8 @@ Route::get('/expenses',function(){
 Route::get('inventory','InventoryController@index');
 
 
+
+Route::get('/add', function(){
+    return View::make("input_expenses");
+});
 ?>
