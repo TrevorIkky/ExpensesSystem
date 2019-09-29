@@ -11,20 +11,10 @@ class InventoryController extends Controller
 {
     //
     public function index() {
+       $drinks = DB::table('drinks')->get();
+       $foods = DB::table('fooditems')->get();
         $users = DB::table('inventory')->get();
-
-        return view('inventory',['users'=>$users]);
+        return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods]);
      }
 
-     public function drinks() {
-        $users = DB::table('drinks')->get();
-
-        return view('inventory',['users'=>$users]);
-     }
-    
-     public function fooditems() {
-        $users = DB::table('fooditems')->get();
-
-        return view('inventory',['users'=>$users]);
-     }
 }
