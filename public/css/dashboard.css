@@ -1,5 +1,7 @@
 :root {
     --size: 300;
+    --from: #ff00cc;
+    --to: #333399;
 }
 
 body {
@@ -38,9 +40,7 @@ body {
     transition: 0.3s;
 }
 
-.barone,
-.bartwo,
-.barthree {
+.bar {
     background: white;
     margin: 8px;
     width: 35px;
@@ -83,8 +83,8 @@ body {
 
 #pie-chart {
     position: absolute;
-    width: 450px;
-    height: 450px;
+    width: 4150px;
+    height: 4150px;
     margin: 80px auto;
 }
 
@@ -111,6 +111,7 @@ body {
     transform: scale(1.2);
     transform-origin: 50% 50%;
 }
+
 #seg-one {
     background-color: rgba(15, 0, 228, 0.938);
     -webkit-clip-path: polygon(50% 0, 50% 50%, 100% 41.2%, 100% 0);
@@ -145,4 +146,55 @@ body {
     background-color: rgb(21, 152, 204);
     -webkit-clip-path: polygon(50% 50%, 0 36.6%, 0 0, 50% 0);
     clip-path: polygon(50% 50%, 0 36.6%, 0 0, 50% 0);
+}
+
+
+/******************INPUT EXPENSES .css************************/
+
+#input-row {
+    margin: 30px;
+}
+
+.rtl-alignment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-sub-icons {
+    margin-bottom: 20px;
+    margin-top: -10px;
+    cursor: pointer;
+}
+
+#add-decorator {
+    background: linear-gradient(45deg, var(--from), var(--to));
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.circle-elevated {
+    width: 80px;
+    height: 80px;
+    border-radius: 150px;
+    border-style: none;
+    background: white;
+    margin: 20px;
+    box-shadow: -10px 10px 10px silver;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.circle-elevated p {
+    margin-top: 25px;
+}
+
+#input-textarea {
+    height: 60px;
+}
+
+.circle-elevated:hover {
+    background: rebeccapurple;
+    cursor: pointer;
+    color: white;
 }
