@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="css/TonisInventory.css">
         <link rel="stylesheet" type="text/css" href="css/materialize.css">
         <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/dt/dt-1.10.18/datatables.min.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
@@ -39,10 +40,10 @@
    <div class="card-deck">
         
         <div class="col-auto mb-3">
-        <div class="card " >
+        <div class="card " id="ctest" >
                   <img src="images/drinks.jpg" class="card-img-top" alt="drinks" >
                   <div class="card-body">
-                    <h5 class="card-title" onclick="view()">Drinks</h5>
+                    <h5 class="card-title" onclick="viewDrinks()">Drinks</h5>
                     <p class="card-text">Views drinks in stock</p>
                   </div>
                   <div class="card-footer">
@@ -76,14 +77,14 @@
                   </div>
         </div>
         </div>
-        <button type="button" class="btn btn-success" onclick="view()">View All</button>
+        <button type="button" class="btn btn-success" onclick="viewAll()">View All</button>
    </div>      
   </div>
 </div>
-
-<div id="InventoryTable">
-<input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type"> 
- <table class="table table-bordered" id="Inventory-Table">
+<input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type">
+ 
+<div id="InventoryTable" style="display: none">
+<table class="table-bordered" id="Inventory-Table">
  
  <thead>
       <tr>
@@ -110,23 +111,78 @@
       <td>{{ $user->quantity }}</td>
   </tr>
   @endforeach
-  <!-- <tr>
-      <th scope="row">2</th>
-      <td>Vegetable</td>
-      <td>lcs</td>
-      <td>30</td>
-      <td>5</td>
-      <td>150</td>
-      <td>Wamboga</td>
-      <td>30</td>
-  </tr>
-   -->
-
   </tbody>
-</table>
+ </table>
 </div>
+
+<div id="InventoryTable drinks">
+<table class="table-bordered" id="Inventory-Table">
+ <thead>
+      <tr>
+  
+      <th id="table-head-text" scope="col">Food TypeNo</th>
+      <th id="table-head-text" scope="col">Unit of Measurement</th>
+      <th id="table-head-text" scope="col">Inventory Amount</th>
+      <th id="table-head-text" scope="col">Cost per Unit</th>
+      <th id="table-head-text" scope="col">Total Cost</th>
+      <th id="table-head-text" scope="col">Vendor</th>
+      <th id="table-head-text" scope="col">Quantity</th>
+      </tr>
+  </thead>
+  <tbody id="inventory-table">
+  @foreach ($drinks as $drink)
+  <tr>
+      <th scope="row">{{ $drink->foodTypeNo }}</th>
+
+      <td>{{ $drink->unitOfMeasurement }}</td>
+      <td>{{ $drink->inventoryAmount }}</td>
+      <td>{{ $drink->costPerUnit }}</td>
+      <td>{{ $drink->totalCost }}</td>
+      <td>{{ $drink->vendor }}</td>
+      <td>{{ $drink->quantity }}</td>
+  </tr>
+  @endforeach 
+  </tbody>
+ </table>
+</div>
+
+<div id="InventoryTable fooditems" style="display: none">
+<table class="table-bordered" id="Inventory-Table">
+ <thead>
+      <tr>
+  
+      <th id="table-head-text" scope="col">Food TypeNo</th>
+      <th id="table-head-text" scope="col">Unit of Measurement</th>
+      <th id="table-head-text" scope="col">Inventory Amount</th>
+      <th id="table-head-text" scope="col">Cost per Unit</th>
+      <th id="table-head-text" scope="col">Total Cost</th>
+      <th id="table-head-text" scope="col">Vendor</th>
+      <th id="table-head-text" scope="col">Quantity</th>
+      </tr>
+  </thead>
+  <tbody id="inventory-table">
+  @foreach ($foods as $food)
+  <tr>
+      <th scope="row">{{ $food->foodTypeNo }}</th>
+
+      <td>{{ $food->unitOfMeasurement }}</td>
+      <td>{{ $food->inventoryAmount }}</td>
+      <td>{{ $food->costPerUnit }}</td>
+      <td>{{ $food->totalCost }}</td>
+      <td>{{ $food->vendor }}</td>
+      <td>{{ $food->quantity }}</td>
+  </tr>
+  @endforeach 
+  </tbody>
+ </table>
+</div>
+
 <script type="text/javascript" src="{{url ('js/inventory.js') }}" defer></script>
 <script type="text/javascript" src = "/js/inventory.js"></script>
+<script type="text/javascript" src = "/js/tables.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/w/dt/dt-1.10.18/datatables.min.js"></script>
 
 </body>
 

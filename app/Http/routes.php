@@ -21,12 +21,10 @@ Route::post('/login/register','LoginController@register');
 Route::get('/inventory',function(){
 	return view('inventory');
 });
-
-
-//ToDO... remove dashboard route
-Route::get('dashboard',function(){
-return view('index');
+Route::get('/expenses',function(){
+	return view('expenses');
 });
+
 
 Route::get('inventory','InventoryController@index');
 Route::get('/add','ExpensesController@index');

@@ -84,18 +84,13 @@ body {
 }
 
 #pie-chart {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    margin: 80px auto;
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 30px auto;
 }
 
-.pie-container {
-    display: flex;
-    justify-content: space-around;
-}
-
-.segment {
+.circle {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -103,49 +98,46 @@ body {
 }
 
 .animate {
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    ;
-    transition: 0.2s;
+    transition: 0.2s ease-in;
 }
 
 .animate:hover {
-    transform: scale(1.2);
-    transform-origin: 50% 50%;
+    transform: scale(1.1);
+    transform-origin: center center;
 }
 
-#seg-one {
-    background-color: rgba(15, 0, 228, 0.938);
+#part1 {
+    background-color: #E64C65;
     -webkit-clip-path: polygon(50% 0, 50% 50%, 100% 41.2%, 100% 0);
     clip-path: polygon(50% 0, 50% 50%, 100% 41.2%, 100% 0);
 }
 
-#seg-two {
-    background-color: rgb(12, 219, 57);
+#part2 {
+    background-color: #11A8AB;
     -webkit-clip-path: polygon(50% 50%, 100% 41.2%, 100% 100%, 63.4% 100%);
     clip-path: polygon(50% 50%, 100% 41.2%, 100% 100%, 63.4% 100%);
 }
 
-#seg-three {
-    background-color: rgb(141, 6, 6);
+#part3 {
+    background-color: #4FC4F6;
     -webkit-clip-path: polygon(50% 50%, 36.6% 100%, 63.4% 100%);
     clip-path: polygon(50% 50%, 36.6% 100%, 63.4% 100%);
 }
 
-#seg-four {
-    background-color: rgb(255, 13, 182);
+#part4 {
+    background-color: #FFED0D;
     -webkit-clip-path: polygon(50% 50%, 0 100%, 36.6% 100%);
     clip-path: polygon(50% 50%, 0 100%, 36.6% 100%);
 }
 
-#seg-five {
-    background-color: rgb(122, 124, 7);
+#part5 {
+    background-color: #F46FDA;
     -webkit-clip-path: polygon(50% 50%, 0 36.6%, 0 100%);
     clip-path: polygon(50% 50%, 0 36.6%, 0 100%);
 }
 
-#seg-six {
-    background-color: rgb(21, 152, 204);
+#part6 {
+    background-color: #15BFCC;
     -webkit-clip-path: polygon(50% 50%, 0 36.6%, 0 0, 50% 0);
     clip-path: polygon(50% 50%, 0 36.6%, 0 0, 50% 0);
 }
