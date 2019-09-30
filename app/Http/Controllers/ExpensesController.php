@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use App\Expenses;
+use Illuminate\Support\Facades\DB;
 
-class InputsController extends Controller
+class ExpensesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +19,8 @@ class InputsController extends Controller
      */
     public function index()
     {
-        //
+        $lastAdded = DB::table('expenses')->get();
+        return view('expenses',['expenses'=>$lastAdded]);
     }
 
     /**
@@ -37,7 +41,28 @@ class InputsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //amount date notes expense-type
+        $validator = Validator::make($request->all(),[
+            "amount"=>"required|numeric",
+            "date"=>"required",
+            "expense-type"=>"required|alpha",
+        ]);
+
+        if($validator->fails()){
+            return redirect('/add')->withErrors($validator)->withInput();
+        }else{
+            if(Expenses::create([
+                "expenseType"=>$request->get("expense-type"),
+                "amount"=>$request->get("amount"),
+                "notes"=>$request->get("notes"),
+                "date_created"=>$request->get("date")
+            ])){
+                return back()->with("SUCCESS","Added");
+            }else{
+                return back()->with("FAILED","Error, Unable to add!"); 
+            }
+        }
     }
 
     /**

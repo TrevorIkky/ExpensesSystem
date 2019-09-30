@@ -30,7 +30,13 @@ Route::get('inventory','InventoryController@index');
 
 
 
+
 Route::get('/add', function(){
     return View::make("input_expenses");
 });
+
+Route::get('/add','ExpensesController@index');
+
+Route::post('/addexp', 'ExpensesController@store')
+
 ?>

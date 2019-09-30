@@ -6,6 +6,7 @@
 
 body {
     margin: 0;
+    font-family: 'Nunito', sans-serif;
 }
 
 .toolbar {
@@ -17,6 +18,7 @@ body {
     background: linear-gradient(45deg, var(--from), var(--to));
     min-width: 100vh;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 #header-text {
@@ -83,8 +85,8 @@ body {
 
 #pie-chart {
     position: absolute;
-    width: 4150px;
-    height: 4150px;
+    width: 450px;
+    height: 450px;
     margin: 80px auto;
 }
 
@@ -153,6 +155,7 @@ body {
 
 #input-row {
     margin: 30px;
+    width: 55%;
 }
 
 .rtl-alignment {
@@ -160,41 +163,66 @@ body {
     justify-content: space-between;
 }
 
-.input-sub-icons {
-    margin-bottom: 20px;
-    margin-top: -10px;
-    cursor: pointer;
-}
-
-#add-decorator {
-    background: linear-gradient(45deg, var(--from), var(--to));
-    border-radius: 10px;
-    padding: 5px;
-    margin-right: 10px;
-}
-
-.circle-elevated {
-    width: 80px;
-    height: 80px;
-    border-radius: 150px;
-    border-style: none;
-    background: white;
-    margin: 20px;
-    box-shadow: -10px 10px 10px silver;
-    text-align: center;
-    font-weight: bolder;
-}
-
-.circle-elevated p {
-    margin-top: 25px;
-}
-
-#input-textarea {
+#input-textarea,
+#input-date-picker {
     height: 60px;
 }
 
-.circle-elevated:hover {
-    background: rebeccapurple;
-    cursor: pointer;
+.expenses-history {
+    height: 100%;
+    width: 45%;
+}
+
+.inputs-container {
+    min-width: 100%;
+    min-height: 100%;
+    margin: 20px;
+}
+
+#recently-added {
+    font-weight: bold;
+    color: black;
+    margin-left: 10px;
+}
+
+#expenses-select {
+    margin-top: 40px;
+}
+
+#add-expenses {
+    position: fixed;
+    bottom: 10%;
+    right: 25%;
+}
+
+#history-card {
+    border-radius: 10px;
+}
+
+#card-row {
+    min-width: 80%;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.error-handling,
+.failed-handling {
+    background: red;
     color: white;
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+.error-handling ul li {
+    list-style-type: none;
+}
+
+.success-handling {
+    background: green;
+    color: white;
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+    transition: 0.2s;
 }

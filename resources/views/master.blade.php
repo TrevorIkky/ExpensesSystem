@@ -23,8 +23,8 @@
                 <ul>
                      <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
                      <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
-                     <li><a href = "{{url('/add')}}">PAYMENTS</a></li>
-                     <li>EXPENSES</li>
+                     <li><a href = "{{url('/add')}}">EXPENSES</a></li>
+                     <li>PAYMENTS</li>
                 </ul>
             </div>
    <div id="main-container" class="main-container">
