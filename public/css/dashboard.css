@@ -156,7 +156,10 @@ body {
 }
 
 #input-textarea,
-#input-date-picker {
+#input-date-picker,
+#food-textarea,
+#amount-textarea,
+#description-textarea {
     height: 60px;
 }
 
@@ -181,9 +184,16 @@ body {
     margin-top: 40px;
 }
 
-#add-expenses {
+.dropzone {
+    border: 2px dashed black;
+    border-radius: 10px;
+    height: 170px;
+}
+
+#add-expenses,
+#add-to-menu {
     position: fixed;
-    bottom: 10%;
+    bottom: 5%;
     right: 25%;
 }
 

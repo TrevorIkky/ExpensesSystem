@@ -27,13 +27,13 @@
             </div>
           </div>
         </div>
-      </div>  --}} 
+      </div>--}} 
     </div>
     </div>
     
     
     
-    <div id = "input-row" class="row" >
+    <div id = "input-row" class="row">
           <form id = "expenses-form" class="col s12" action="{{url('/addexp')}}" method="POST" class="dropzone">
             {{csrf_field()}}
             <div class="row">
@@ -54,8 +54,10 @@
                 <label for="description-textarea">Description</label>
               </div>
             </div>
+        
           <a id = "add-to-menu"class="btn-floating btn-large black pulse"><i class="material-icons">done</i></a>
           </form>
-        </div>   
+        </div> 
+        <form action = "{{url('upload-images')}}" enctype = "multipart/form-data" class = "dropzone" method = "POST"></form>  
     </div>
 @endsection

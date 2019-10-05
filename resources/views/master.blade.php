@@ -44,6 +44,6 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 <script type="text/javascript" src = "/js/master.js"></script>
-<script type="text/javascript" src="/js/dropzone.js" defer></script>
+<script type="text/javascript" src="/js/dropzone.js"></script>
 </body>
 </html>
