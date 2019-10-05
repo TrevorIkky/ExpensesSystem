@@ -24,6 +24,7 @@
                      <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
                      <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
                      <li><a href = "{{url('/add')}}">EXPENSES</a></li>
+                     <li><a href = "{{url('/addmenu')}}">MENU</a></li>
                      <li>PAYMENTS</li>
                 </ul>
             </div>
@@ -43,5 +44,6 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 <script type="text/javascript" src = "/js/master.js"></script>
+<script type="text/javascript" src="/js/dropzone.js" defer></script>
 </body>
 </html>

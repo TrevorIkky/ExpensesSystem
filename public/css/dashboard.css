@@ -15,7 +15,7 @@ body {
 }
 
 .main-container {
-    background: linear-gradient(45deg, var(--from), var(--to));
+    background: white;
     min-width: 100vh;
     min-height: 100vh;
     overflow-x: hidden;
@@ -23,7 +23,7 @@ body {
 
 #header-text {
     font-family: 'Great Vibes', cursive;
-    color: white;
+    color: black;
     font-weight: bold;
     margin-left: 30px;
 }
@@ -43,7 +43,7 @@ body {
 }
 
 .bar {
-    background: white;
+    background: black;
     margin: 8px;
     width: 35px;
     height: 2px;

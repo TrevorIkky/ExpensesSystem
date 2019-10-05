@@ -29,5 +29,7 @@ Route::get('/expenses',function(){
 Route::get('inventory','InventoryController@index');
 Route::get('/add','ExpensesController@index');
 
-Route::post('/addexp', 'ExpensesController@store')
+Route::post('/addexp', 'ExpensesController@store');
+Route::get('/addmenu','MenuController@index');
+
 ?>
