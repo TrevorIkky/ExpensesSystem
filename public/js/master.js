@@ -24,4 +24,6 @@ $(document).ready(function() {
         document.getElementById("open-nav-bar").style.opacity = "0";
         document.getElementById("main-container").style.marginRight = "500px";
     })
+
+    $('.materialboxed').materialbox();
 });

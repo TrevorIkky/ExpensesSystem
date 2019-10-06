@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Menu;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -16,7 +19,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('menu');
+        $menu = DB::table('menu')->get();
+        return view('menu',['items'=>$menu]);
     }
 
     /**
@@ -26,7 +30,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+       
+        
     }
 
     /**
@@ -37,7 +42,36 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $uploadedImage = $request->file('file');
+        $allowedExtensions = array("png","jpg","jpeg");
+        if(in_array($uploadedImage->getClientOriginalExtension(),$allowedExtensions)){
+           if($uploadedImage->move('uploads',$uploadedImage->getClientOriginalName())){
+               $url = '/uploads/'.$uploadedImage->getClientOriginalName();
+               $validator = Validator::make($request->all(),[
+                   'food' => 'required',
+                   'amount' => 'required|numeric',
+               ]);
+               if($validator->fails()){
+                return back()->withErrors($validator);
+               }else{
+                if(Menu::create([
+                    'name' => $request->get('food'),
+                    'description' => $request->get('description'),
+                    'amount' => $request->get('amount'),
+                    'url' => $url
+                   ])){
+                    return redirect('/menu')->with("SUCCESS","Food item uploaded!");  
+                   }else{
+                    return redirect('/menu')->with("FAILED","Error! Unable to add menu item");  
+                   }               
+               }
+
+           }else{
+            return redirect('/menu')->with("FAILED","Error! Unable to add file to directory");  
+           }
+        }else{
+            return redirect('/menu')->with("FAILED","Error! Unsupported extension type.");
+        }
     }
 
     /**

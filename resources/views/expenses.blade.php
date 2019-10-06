@@ -13,7 +13,7 @@
       <div class="col s12 m6">
         <div id = "history-card" class="card">
           <div  class="card-content">
-            <p>{{$expense->date_created}}</p>
+            <p>{{$expense->on}}</p>
             <p>{{$expense->notes}}</p>
           </div>
         </div>

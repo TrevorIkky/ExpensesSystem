@@ -184,10 +184,14 @@ body {
     margin-top: 40px;
 }
 
-.dropzone {
+#file-upload {
     border: 2px dashed black;
     border-radius: 10px;
-    height: 170px;
+    height: 150px;
+}
+
+#file-path-text {
+    border-bottom: none !important;
 }
 
 #add-expenses,
@@ -195,6 +199,10 @@ body {
     position: fixed;
     bottom: 5%;
     right: 25%;
+}
+
+#file-upload {
+    text-align: center;
 }
 
 #history-card {

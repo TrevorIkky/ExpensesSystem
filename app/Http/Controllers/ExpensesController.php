@@ -56,7 +56,7 @@ class ExpensesController extends Controller
                 "expenseType"=>$request->get("expense-type"),
                 "amount"=>$request->get("amount"),
                 "notes"=>$request->get("notes"),
-                "date_created"=>$request->get("date")
+                "on"=>$request->get("date")
             ])){
                 return back()->with("SUCCESS","Added");
             }else{

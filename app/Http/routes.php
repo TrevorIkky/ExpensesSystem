@@ -28,8 +28,10 @@ Route::get('/expenses',function(){
 
 Route::get('inventory','InventoryController@index');
 Route::get('/add','ExpensesController@index');
+Route::get('/dashboard','LoginController@successful_login');
 
 Route::post('/addexp', 'ExpensesController@store');
-Route::get('/addmenu','MenuController@index');
+Route::get('/menu','MenuController@index');
+Route::post('/addmenu','MenuController@store');
 
 ?>
