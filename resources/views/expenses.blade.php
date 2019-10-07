@@ -21,18 +21,16 @@
           <div class="collapse navbar-collapse"id="navbarNavAltMarkup">
            <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#">Dashboard</a>
-                <a class="nav-item nav-link" href="#">Inventory </a>
+                <a class="nav-item nav-link" href="{{url('/inventory')}}">Inventory </a>
                 <a class="nav-item nav-link" href="#">Payments</a>
-                <a class="nav-item nav-link active" href="#">Expenses<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="{{url('/add')}}">Expenses<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="#">Food Sold</a>
               
            </div>
           </div>     
     </nav>
 
-<div id="inventory">
- <h1>EXPENSES</h1>
-</div>
+
 
 @extends('master')
 @section('main-content')

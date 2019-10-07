@@ -29,11 +29,11 @@ function viewAll(){
     x.style.display="none";
     }
         
-    if(y.style.display=="none"){
-    y.style.display="block";
-    }else{
-    y.style.display="none";
-    }
+    // if(y.style.display=="none"){
+    // y.style.display="block";
+    // }else{
+    // y.style.display="none";
+    // }
     
     // if(z.style.display=="none"){
     // z.style.display="block";
@@ -54,11 +54,11 @@ function viewDrinks(){
     x.style.display="none";
   }
   
-  //  if(y.style.display=="none"){
-  //    y.style.display="block";
-  //  }else{
-  //    y.style.display="none";
-  //  }
+   if(y.style.display=="none"){
+      y.style.display="block";
+    }else{
+      y.style.display="none";
+    }
   
   // if(z.style.display=="none"){
   //   z.style.display="block";

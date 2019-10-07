@@ -21,9 +21,9 @@
           <div class="collapse navbar-collapse"id="navbarNavAltMarkup">
            <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#">Dashboard</a>
-                <a class="nav-item nav-link active" href="#">Inventory <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="{{url('/inventory')}}">Inventory <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="#">Payments</a>
-                <a class="nav-item nav-link" href="#">Expenses</a>
+                <a class="nav-item nav-link" href="{{url('/add')}}">Expenses</a>
                 <a class="nav-item nav-link disabled" href="#">Food Sold</a>
               
            </div>
@@ -115,12 +115,13 @@
  </table>
 </div>
 
-<div id="InventoryTable drinks">
-<table class="table-bordered" id="Inventory-Table">
+<div id="InventoryTable drinks" style="display: none">
+<table class="table-bordered" id="Inventory-Table" >
  <thead>
       <tr>
   
       <th id="table-head-text" scope="col">Food TypeNo</th>
+      <th id="table-head-text" scope="col">DrinkName</th>
       <th id="table-head-text" scope="col">Unit of Measurement</th>
       <th id="table-head-text" scope="col">Inventory Amount</th>
       <th id="table-head-text" scope="col">Cost per Unit</th>
@@ -133,7 +134,7 @@
   @foreach ($drinks as $drink)
   <tr>
       <th scope="row">{{ $drink->foodTypeNo }}</th>
-
+      <td>{{ $drink->DrinkName }}</td>
       <td>{{ $drink->unitOfMeasurement }}</td>
       <td>{{ $drink->inventoryAmount }}</td>
       <td>{{ $drink->costPerUnit }}</td>
