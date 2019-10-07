@@ -55,10 +55,10 @@ function viewDrinks(){
   }
   
    if(y.style.display=="none"){
-      y.style.display="block";
-    }else{
-      y.style.display="none";
-    }
+     y.style.display="block";
+   }else{
+     y.style.display="none";
+   }
   
   // if(z.style.display=="none"){
   //   z.style.display="block";

@@ -13,6 +13,7 @@
       <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
       <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
+    
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nunito+Sans&display=swap" rel="stylesheet"> 
      <title>@yield('title')</title>
 </head>
@@ -24,6 +25,7 @@
                      <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
                      <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
                      <li><a href = "{{url('/add')}}">EXPENSES</a></li>
+                     <li><a href = "{{url('/menu')}}">MENU</a></li>
                      <li>PAYMENTS</li>
                 </ul>
             </div>
@@ -43,5 +45,6 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 <script type="text/javascript" src = "/js/master.js"></script>
+<script type="text/javascript" src="/js/dropzone.js"></script>
 </body>
 </html>

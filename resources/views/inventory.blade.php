@@ -115,13 +115,12 @@
  </table>
 </div>
 
-<div id="InventoryTable drinks" style="display: none">
-<table class="table-bordered" id="Inventory-Table" >
+<div id="InventoryTable drinks">
+<table class="table-bordered" id="Inventory-Table">
  <thead>
       <tr>
   
       <th id="table-head-text" scope="col">Food TypeNo</th>
-      <th id="table-head-text" scope="col">DrinkName</th>
       <th id="table-head-text" scope="col">Unit of Measurement</th>
       <th id="table-head-text" scope="col">Inventory Amount</th>
       <th id="table-head-text" scope="col">Cost per Unit</th>
@@ -134,7 +133,6 @@
   @foreach ($drinks as $drink)
   <tr>
       <th scope="row">{{ $drink->foodTypeNo }}</th>
-      <td>{{ $drink->DrinkName }}</td>
       <td>{{ $drink->unitOfMeasurement }}</td>
       <td>{{ $drink->inventoryAmount }}</td>
       <td>{{ $drink->costPerUnit }}</td>

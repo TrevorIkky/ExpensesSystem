@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Menu;
 use Illuminate\Support\Facades\Validator;
-use App\Expenses;
 use Illuminate\Support\Facades\DB;
 
-class ExpensesController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        $lastAdded = DB::table('expenses')->get();
-        return view('expenses',['expenses'=>$lastAdded]);
+        $menu = DB::table('menu')->get();
+        return view('menu',['items'=>$menu]);
     }
 
     /**
@@ -30,7 +30,8 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-        //
+       
+        
     }
 
     /**
@@ -41,27 +42,35 @@ class ExpensesController extends Controller
      */
     public function store(Request $request)
     {
+        $uploadedImage = $request->file('file');
+        $allowedExtensions = array("png","jpg","jpeg");
+        if(in_array($uploadedImage->getClientOriginalExtension(),$allowedExtensions)){
+           if($uploadedImage->move('uploads',$uploadedImage->getClientOriginalName())){
+               $url = '/uploads/'.$uploadedImage->getClientOriginalName();
+               $validator = Validator::make($request->all(),[
+                   'food' => 'required',
+                   'amount' => 'required|numeric',
+               ]);
+               if($validator->fails()){
+                return back()->withErrors($validator);
+               }else{
+                if(Menu::create([
+                    'name' => $request->get('food'),
+                    'description' => $request->get('description'),
+                    'amount' => $request->get('amount'),
+                    'url' => $url
+                   ])){
+                    return redirect('/menu')->with("SUCCESS","Food item uploaded!");  
+                   }else{
+                    return redirect('/menu')->with("FAILED","Error! Unable to add menu item");  
+                   }               
+               }
 
-        //amount date notes expense-type
-        $validator = Validator::make($request->all(),[
-            "amount"=>"required|numeric",
-            "date"=>"required",
-            "expense-type"=>"required|alpha",
-        ]);
-
-        if($validator->fails()){
-            return redirect('/add')->withErrors($validator)->withInput();
+           }else{
+            return redirect('/menu')->with("FAILED","Error! Unable to add file to directory");  
+           }
         }else{
-            if(Expenses::create([
-                "expenseType"=>$request->get("expense-type"),
-                "amount"=>$request->get("amount"),
-                "notes"=>$request->get("notes"),
-                "on"=>$request->get("date")
-            ])){
-                return back()->with("SUCCESS","Added");
-            }else{
-                return back()->with("FAILED","Error, Unable to add!"); 
-            }
+            return redirect('/menu')->with("FAILED","Error! Unsupported extension type.");
         }
     }
 

@@ -36,6 +36,11 @@ Route::get('/add', function(){
 });
 
 Route::get('/add','ExpensesController@index');
+Route::get('/dashboard','LoginController@successful_login');
+
+Route::post('/addexp', 'ExpensesController@store');
+Route::get('/menu','MenuController@index');
+Route::post('/addmenu','MenuController@store');
 
 Route::post('/addexp', 'ExpensesController@store')
 

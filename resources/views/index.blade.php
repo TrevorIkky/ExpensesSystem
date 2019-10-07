@@ -7,16 +7,15 @@
 @endif
 
 <div id="dashboard" data-tab-content="" class="active">
-	<div class="pie-container">
-			<div id="pie-chart">
-					<div id="seg-one" class="segment animate"></div>
-					<div id="seg-two" class="segment animate"></div>
-					<div id="seg-three" class="segment animate"></div>
-					<div id="seg-four" class="segment animate"></div>
-					<div id="seg-five" class="segment animate"></div>
-					<div id="seg-six" class="segment animate"></div>
-				</div>
-	</div>
+	<div id="pie-chart">
+		<div id="part1" class="circle animate"></div>
+		<div id="part2" class="circle animate"></div>
+		<div id="part3" class="circle animate"></div>
+		<div id="part4" class="circle animate"></div>
+		<div id="part5" class="circle animate"></div>
+		<div id="part6" class="circle animate"></div>
+	  </div>
+</div>
 
 </div>
 @endsection
