@@ -54,7 +54,7 @@
 
         <div class="col-auto mb-3">
         <div class="card">
-                  <img src="images/crockery.jpg" class="card-img-top" alt="...">
+                  <img src="images/crockery.jpg" class="card-img-top" alt="crockery">
                   <div class="card-body">
                     <h5 class="card-title">Crockery</h5>
                     <p class="card-text">Views crockery in stock</p>
@@ -69,7 +69,7 @@
         <div class="card">
                   <img src="images/groceries.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Food Items</h5>
+                    <h5 class="card-title" onclick="viewFood()">Food Items</h5>
                     <p class="card-text">Views food items in stock</p>
                   </div>
                   <div class="card-footer">
@@ -81,9 +81,10 @@
    </div>      
   </div>
 </div>
-<input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type">
+
  
 <div id="InventoryTable" style="display: none">
+<input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type">
 <table class="table-bordered" id="Inventory-Table">
  
  <thead>
@@ -121,6 +122,7 @@
       <tr>
   
       <th id="table-head-text" scope="col">Food TypeNo</th>
+      <th id="table-head-text" scope="col">Drink Name</th>
       <th id="table-head-text" scope="col">Unit of Measurement</th>
       <th id="table-head-text" scope="col">Inventory Amount</th>
       <th id="table-head-text" scope="col">Cost per Unit</th>
@@ -133,6 +135,7 @@
   @foreach ($drinks as $drink)
   <tr>
       <th scope="row">{{ $drink->foodTypeNo }}</th>
+      <td>{{ $drink->DrinkName }}</td>
       <td>{{ $drink->unitOfMeasurement }}</td>
       <td>{{ $drink->inventoryAmount }}</td>
       <td>{{ $drink->costPerUnit }}</td>
@@ -151,6 +154,7 @@
       <tr>
   
       <th id="table-head-text" scope="col">Food TypeNo</th>
+      <th id="table-head-text" scope="col">Food Item Name</th>
       <th id="table-head-text" scope="col">Unit of Measurement</th>
       <th id="table-head-text" scope="col">Inventory Amount</th>
       <th id="table-head-text" scope="col">Cost per Unit</th>
@@ -163,7 +167,7 @@
   @foreach ($foods as $food)
   <tr>
       <th scope="row">{{ $food->foodTypeNo }}</th>
-
+      <td>{{ $food->FoodItemName }}</td>
       <td>{{ $food->unitOfMeasurement }}</td>
       <td>{{ $food->inventoryAmount }}</td>
       <td>{{ $food->costPerUnit }}</td>

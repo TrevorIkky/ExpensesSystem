@@ -29,17 +29,17 @@ function viewAll(){
     x.style.display="none";
     }
         
-    // if(y.style.display=="none"){
-    // y.style.display="block";
-    // }else{
-    // y.style.display="none";
-    // }
+    if(y.style.display=="block"){
+     y.style.display="none";
+     }else{
+     y.style.display="none";
+     }
     
-    // if(z.style.display=="none"){
-    // z.style.display="block";
-    // }else{
-    // z.style.display="none";
-    // }
+    //  if(z.style.display=="none"){
+    //  z.style.display="block";
+    //  }else{
+    //  z.style.display="none";
+    //  }
 
     }
 
@@ -54,11 +54,11 @@ function viewDrinks(){
     x.style.display="none";
   }
   
-   if(y.style.display=="none"){
-     y.style.display="block";
-   }else{
-     y.style.display="none";
-   }
+  //  if(y.style.display=="none"){
+  //    y.style.display="block";
+  //  }else{
+  //    y.style.display="none";
+  //  }
   
   // if(z.style.display=="none"){
   //   z.style.display="block";
@@ -69,5 +69,20 @@ function viewDrinks(){
 }
 
 function viewFood(){
+  var x=document.getElementById("InventoryTable fooditems");
+  var y=document.getElementById("InventoryTable");
+  var z=document.getElementById("InventoryTable drinks");
+  
 
+  if(x.style.display=="none"){
+    x.style.display="block";
+  }else{
+    x.style.display="none";
+  }
+  
+   if(z.style.display=="none"){
+     z.style.display="block";
+   }else{
+     z.style.display="none";
+   }
 }
