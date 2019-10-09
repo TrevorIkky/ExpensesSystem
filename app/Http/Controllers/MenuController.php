@@ -117,5 +117,10 @@ class MenuController extends Controller
     public function destroy($id)
     {
         //
+        $item = Menu::find($id);
+        if($item->delete())
+        return redirect('/menu')->with('SUCCESS','Item Deleted!');
+        else
+        return redirect('/menu')->with('FAILED','Unable to delete item!');
     }
 }
