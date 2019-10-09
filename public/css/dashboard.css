@@ -236,3 +236,24 @@ body {
     padding: 10px;
     transition: 0.2s;
 }
+
+.end-rtl {
+    display: flex;
+    justify-content: end;
+}
+
+.menu-decor {
+    box-shadow: -10px 10px 10px silver;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    margin-right: 20px;
+    background: linear-gradient(96deg, #ff00cc, #333399);
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+}

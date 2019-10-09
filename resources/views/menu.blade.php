@@ -13,14 +13,21 @@
                 <img class="materialboxed" height  = "270" width="400" src={{$item->url}}>
             </div>
             <div class="card-content">
-              <div style= "display:flex;justify-content:end; margin: 4px;">
-                  <i class="material-icons " style="cursor:pointer" >more_vert</i>  
+              <div style= "display:flex;justify-content:end; margin: 4px;">               
+                  <a class="dropdown-trigger" href="#" data-target='dropdown1'><i class="material-icons " style="cursor:pointer" >more_vert</i>  </a>
                 </div>
               <p style="font-weight:bold; margin-top:10px;">{{$item->name}}</p>
               <p style="margin-top:10px;">{{$item->description}}</p>
               <p style="margin-top:10px;"> KES {{$item->amount}}</p>
             </div>
-        </div>  
+        </div>
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a  class = "modal-trigger"href="#modal1">Update Item</a></li>
+            <form  id = "delete-form"action="{{url('/menu/delete',['id'=>$item->id])}}" method="POST">
+              {{ csrf_field() }}
+            </form>
+            <li><a id = "delete-menu-item">Delete Item</a></li>
+          </ul> 
         </div>
       @endforeach  
       @else
@@ -36,8 +43,44 @@
       @endif
     </div>
     </div>
+
+
     
     
+
+  <form id = "modifier-form" action="">
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+          <div class="row">
+              <div class="input-field col s6">
+                <textarea  name = "food" id="food-textarea" class="materialize-textarea" data-length="30" placeholder="Chicken..."></textarea>
+                <label for="food-textarea">Food Name</label>
+              </div>
+              <div class="input-field col s6">
+                <textarea  name = "amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00"></textarea>
+                <label for="amount-textarea">Amount</label>
+                </div>
+             
+            </div>
+
+            
+            <div class="row">
+                <div class="input-field col s12">
+                  <textarea name = "description" id="description-textarea" class="materialize-textarea" data-length="50" placeholder="Description(Optional)..."></textarea>
+                  <label for="description-textarea">Description</label>
+                </div>
+              </div>
+        <div class="end-rtl">
+          <div class="update-menu menu-decor">
+            UPDATE
+          </div>
+          <div style="margin-left:10px; margin-right:20px; margin-top:10px;" class="modal-close">
+             CLOSE
+            </div>
+        </div>
+      </div>
+    </div>
+  </form>
     
     <div id = "input-row" class="row">
           <form id = "menu-form" class="col s12" action="{{url('/addmenu')}}" method="POST" enctype="multipart/form-data">
@@ -76,5 +119,8 @@
    <script>
    $('#add-to-menu').on('click',function(){
       $("#menu-form").submit()
+    })
+    $('#delete-menu-item').on('click',function(){
+      $("#delete-form").submit()
     })</script>
 @endsection

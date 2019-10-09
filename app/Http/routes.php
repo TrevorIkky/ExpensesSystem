@@ -41,6 +41,7 @@ Route::get('/dashboard','LoginController@successful_login');
 Route::post('/addexp', 'ExpensesController@store');
 Route::get('/menu','MenuController@index');
 Route::post('/addmenu','MenuController@store');
+Route::post('/menu/delete/{id}', 'MenuController@destroy');
 
 Route::post('/addexp', 'ExpensesController@store');
 
