@@ -42,6 +42,8 @@ Route::post('/addexp', 'ExpensesController@store');
 Route::get('/menu','MenuController@index');
 Route::post('/addmenu','MenuController@store');
 
-Route::post('/addexp', 'ExpensesController@store')
+Route::post('/addexp', 'ExpensesController@store');
 
+Route::post('insert','InventoryController@insertform');
+Route::post('create','InventoryController@insert');
 ?>

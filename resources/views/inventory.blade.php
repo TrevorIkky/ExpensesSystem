@@ -34,6 +34,7 @@
  <h1>INVENTORY</h1>
 </div>
 
+<section id="custom">
 <div id="card-container">
   <div id="cards">
 
@@ -41,6 +42,7 @@
         
         <div class="col-auto mb-3">
         <div class="card " id="ctest" >
+        
                   <img src="images/drinks.jpg" class="card-img-top" alt="drinks" >
                   <div class="card-body">
                     <h5 class="card-title" onclick="viewDrinks()">Drinks</h5>
@@ -50,13 +52,14 @@
                     <small class="text-muted"></small>
                   </div>
         </div>
+    
         </div>
-
+        
         <div class="col-auto mb-3">
         <div class="card">
                   <img src="images/crockery.jpg" class="card-img-top" alt="crockery">
                   <div class="card-body">
-                    <h5 class="card-title">Crockery</h5>
+                    <h5 class="card-title" onclick="viewCrockery()">Crockery</h5>
                     <p class="card-text">Views crockery in stock</p>
                   </div>
                   <div class="card-footer">
@@ -81,7 +84,7 @@
    </div>      
   </div>
 </div>
-
+</section>
  
 <div id="InventoryTable" style="display: none">
 <input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type">
@@ -130,6 +133,7 @@
       <th id="table-head-text" scope="col">Vendor</th>
       <th id="table-head-text" scope="col">Quantity</th>
       </tr>
+      
   </thead>
   <tbody id="inventory-table">
   @foreach ($drinks as $drink)
@@ -146,6 +150,41 @@
   @endforeach 
   </tbody>
  </table>
+ 
+ <!-- <button type="button" class="btn btn-dark" onclick="insertDrinks()">Insert New</button> -->
+ 
+ <form id="drinksform" method="POST" style="display: none">
+ {{csrf_field()}}
+ <div class="form-group">
+    <input type="text" class="form-control"  placeholder="DrinkName">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="Unit of Measurement">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="Inventory Amount">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="Cost per Unit">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="Total Cost">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="Vendor">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="Quantity">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 </div>
 
 <div id="InventoryTable fooditems" style="display: none">
@@ -174,6 +213,29 @@
       <td>{{ $food->totalCost }}</td>
       <td>{{ $food->vendor }}</td>
       <td>{{ $food->quantity }}</td>
+  </tr>
+  @endforeach 
+  </tbody>
+ </table>
+</div>
+
+<div id="InventoryTable crockery" style="display: none">
+<table class="table-bordered" id="Inventory-Table">
+ <thead>
+      <tr>
+  
+      <th id="table-head-text" scope="col">Crockery ID</th>
+      <th id="table-head-text" scope="col">Crockery Name</th>
+      <th id="table-head-text" scope="col">Quantity</th>
+      
+      </tr>
+  </thead>
+  <tbody id="inventory-table">
+  @foreach ($crockery as $crockery)
+  <tr>
+      <th scope="row">{{ $crockery->crockeryid }}</th>
+      <td>{{ $crockery->crockeryName }}</td>
+      <td>{{ $crockery->Quantity }}</td>
   </tr>
   @endforeach 
   </tbody>

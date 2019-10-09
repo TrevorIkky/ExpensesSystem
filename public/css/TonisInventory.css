@@ -7,6 +7,12 @@ body {
 #inventory{
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+.form-group{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 #card-container{
     background: #000000d2;
@@ -20,6 +26,16 @@ body {
     display: inline-block;
     color: #000;
     text-decoration: none;
+    background-color: transparent;
+  
+}
+.card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 .card::after {
     content: '';
@@ -30,10 +46,29 @@ body {
     transition: width .3s;
     
 }
-
+.fcard{
+    background-color: transparent;
+    
+    border: 1px solid #f1f1f1;
+    perspective: 1000px;
+}
+.fcard:hover .card-inner{
+    transform: rotateY(180deg);
+}
+.card-front{
+   
+    backface-visibility: hidden;
+}
+ .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
 .card:hover::after {
     width: 100%;
     transition: width .3s;
+    
 }
 .card-title{
     text-align: center;
@@ -67,3 +102,16 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
+::-webkit-input-placeholder {
+    font-style: italic;
+ }
+ :-moz-placeholder {
+    font-style: italic;  
+ }
+ ::-moz-placeholder {
+    font-style: italic;  
+ }
+ :-ms-input-placeholder {  
+    font-style: italic; 
+ }
+
