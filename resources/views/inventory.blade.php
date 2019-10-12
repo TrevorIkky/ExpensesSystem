@@ -80,7 +80,7 @@
                   </div>
         </div>
         </div>
-        <button type="button" class="btn btn-success" onclick="viewAll()">View All</button>
+        <button type="button" class="btn" onclick="viewAll()">View All</button>
    </div>      
   </div>
 </div>
@@ -120,6 +120,7 @@
 </div>
 
 <div id="InventoryTable drinks">
+<input class="form-control" id="inventory-search-drinks" type="text" onkeyup="searchDrinks()" placeholder="Search Drink Name">
 <table class="table-bordered" id="Inventory-Table">
  <thead>
       <tr>
@@ -135,7 +136,7 @@
       </tr>
       
   </thead>
-  <tbody id="inventory-table">
+  <tbody id="inventory-table-drinks">
   @foreach ($drinks as $drink)
   <tr>
       <th scope="row">{{ $drink->foodTypeNo }}</th>
@@ -150,44 +151,91 @@
   @endforeach 
   </tbody>
  </table>
- 
- <!-- <button type="button" class="btn btn-dark" onclick="insertDrinks()">Insert New</button> -->
- 
- <form id="drinksform" method="POST" style="display: none">
- {{csrf_field()}}
- <div class="form-group">
-    <input type="text" class="form-control"  placeholder="DrinkName">
-  </div>
-
-  <div class="form-group">
-    <input type="text" class="form-control"  placeholder="Unit of Measurement">
-  </div>
-
-  <div class="form-group">
-    <input type="text" class="form-control"  placeholder="Inventory Amount">
-  </div>
-
-  <div class="form-group">
-    <input type="text" class="form-control"  placeholder="Cost per Unit">
-  </div>
-
-  <div class="form-group">
-    <input type="text" class="form-control"  placeholder="Total Cost">
-  </div>
-
-  <div class="form-group">
-    <input type="text" class="form-control"  placeholder="Vendor">
-  </div>
-
-  <div class="form-group">
-    <input type="text" class="form-control"  placeholder="Quantity">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
 </div>
 
+
+ <div id="insertfield">
+ <button type="button" class="btn" onclick="insertDrinks()">Insert New</button>
+ <button type="button" class="btn" onclick="editDrinks()">Edit</button>
+ <button type="button" class="btn" onclick="insertDrinks()">Delete</button>
+ </div>
+
+ <div id="insertform-drinks"  style="display: none">
+ 
+ <form action="insert"id="drinksform" method="POST" >
+ {{csrf_field()}}
+ <div class="form-group col-sm-6" >
+    <input type="text" class="form-control"  name="DrinkName" placeholder="Drink Name">
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="unitOfMeasurement" placeholder="Unit of Measurement">
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="inventoryAmount" placeholder="Inventory Amount">
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="costPerUnit" placeholder="Cost per Unit">
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="totalCost" placeholder="Total Cost">
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="vendor" placeholder="Vendor">
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="quantity"placeholder="Quantity">
+  </div>
+  <button type="submit" class="button-submit">Submit</button>
+</form>
+ </div>
+
+
+ <div id="editform-drinks"  style="display: none">
+
+   <form action="update" id="drinksform" method="POST" >
+     {{csrf_field()}}
+    <input type="hidden" name="_method" placeholder="Drink Name" value="PATCH"/>
+ 
+ <div class="form-group col-sm-6" >
+    <input type="text" class="form-control"  name="DrinkName" placeholder="Drink Name" value="{{$drink->DrinkName}}"/>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="unitOfMeasurement" placeholder="Unit of Measurement" value="{{$drink->unitOfMeasurement}}"/>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="inventoryAmount" placeholder="Inventory Amount" value="{{$drink->inventoryAmount}}"/>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="costPerUnit" placeholder="Cost per Unit" value="{{$drink->costPerUnit}}"/>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="totalCost" placeholder="Total Cost" value="{{$drink->totalCost}}"/>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="vendor" placeholder="Vendor" value="{{$drink->vendor}}"/>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <input type="text" class="form-control"  name="quantity"placeholder="Quantity" value="{{$drink->quantity}}"/>
+  </div>
+  <button type="submit" class="button-submit">Submit</button>
+</form>
+ </div>
+
 <div id="InventoryTable fooditems" style="display: none">
+<input class="form-control" id="inventory-search-food" type="text" onkeyup="searchFood()" placeholder="Search Food Name">
+
 <table class="table-bordered" id="Inventory-Table">
  <thead>
       <tr>
@@ -202,7 +250,7 @@
       <th id="table-head-text" scope="col">Quantity</th>
       </tr>
   </thead>
-  <tbody id="inventory-table">
+  <tbody id="inventory-table-food">
   @foreach ($foods as $food)
   <tr>
       <th scope="row">{{ $food->foodTypeNo }}</th>

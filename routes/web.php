@@ -21,5 +21,10 @@ Route::get('/Total', 'PagesController@Total');
 
 
 Route::resource('posts','PostsController');
-
+RouteRoute::get('/inventory', function(){
+    return view('inventory');
+});
+RouteRoute::get('/inventoryedit', function(){
+    return view('inventoryedit');
+});
 

@@ -1,5 +1,5 @@
 
-function search() {
+function searchAll() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("inventory-search");
   filter = input.value.toUpperCase();
@@ -18,6 +18,43 @@ function search() {
   }
 }
 
+function searchDrinks() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("inventory-search-drinks");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("inventory-table-drinks");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+function searchFood() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("inventory-search-food");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("inventory-table-food");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
 $(".flipper").click(function() {
   var target = $( event.target );
   if ( target.is("a") ) {
@@ -151,7 +188,17 @@ function viewCrockery(){
 }
 
 function insertDrinks(){
-  var x=document.getElementById("drinksform");
+  var x=document.getElementById("insertform-drinks");
+  if(x.style.display=='none'){
+    x.style.display="block";
+  }else{
+    x.style.display="none";
+  }
+}
+
+function editDrinks(){
+  var x=document.getElementById("editform-drinks");
+  
   if(x.style.display=='none'){
     x.style.display="block";
   }else{

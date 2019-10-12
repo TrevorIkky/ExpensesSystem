@@ -45,6 +45,10 @@ Route::post('/menu/delete/{id}', 'MenuController@destroy');
 
 Route::post('/addexp', 'ExpensesController@store');
 
-Route::post('insert','InventoryController@insertform');
-Route::post('create','InventoryController@insert');
+Route::post('insert','InventoryController@insert');
+Route::get('/inventoryedit',function(){
+	return view('inventoryedit');
+});
+
+
 ?>

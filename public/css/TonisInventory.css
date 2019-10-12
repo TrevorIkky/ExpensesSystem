@@ -114,4 +114,35 @@ body {
  :-ms-input-placeholder {  
     font-style: italic; 
  }
-
+ #insertfield{
+     margin-top: 3%;
+     margin-left: 40%;
+ }
+ #insertform-drinks{
+    margin-left: 30%;
+    color: #e9ecef;
+    
+ }
+ #editform-drinks{
+    margin-left: 30%;
+    color: #e9ecef;
+    
+ }
+ .form-control:focus {
+    border-color: #eb28fd !important;
+    border-width: 2px!important; 
+  }
+.button-submit{
+    background-color: rgb(223, 24, 241);
+    border-radius: 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: #eb28fd;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 250px;
+}
+.btn{
+    background-color: rgb(223, 24, 241)!important;
+    border-radius: 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: #eb28fd;
+}
