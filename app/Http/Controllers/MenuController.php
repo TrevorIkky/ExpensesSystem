@@ -44,7 +44,7 @@ class MenuController extends Controller
     {
         $uploadedImage = $request->file('file');
         $allowedExtensions = array("png","jpg","jpeg");
-        if(in_array($uploadedImage->getClientOriginalExtension(),$allowedExtensions)){
+        if(in_array(strtolower($uploadedImage->getClientOriginalExtension()),$allowedExtensions)){
            if($uploadedImage->move('uploads',$uploadedImage->getClientOriginalName())){
                $url = '/uploads/'.$uploadedImage->getClientOriginalName();
                $validator = Validator::make($request->all(),[
@@ -106,6 +106,23 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'food' => 'required',
+            'amount' => 'required|numeric',
+        ]);
+        if($validator->fails()){
+            return redirect('/menu')->withErrors($validator);
+        }else{
+             $description = ($request->get('description') == '') ? $request->get('description') : '';
+             if(DB::table('menu')
+             ->where('id',$id)
+             ->update(['name'=>$request->get('food'), 'amount'=> $request->get('amount'), 'description'=>$description])){
+                 return redirect('/menu')->with('SUCCESS','Item updated successfully!');
+             }else{
+                 return redirect('/menu')->with('FAILED','Unable to update item!');
+             }       
+        }
+
     }
 
     /**

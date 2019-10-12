@@ -10,7 +10,7 @@
       <div class="card">
         <div class="rtl-alignment">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="materialboxed" height  = "270" width="400" src={{$item->url}}>
+                <img class="materialboxed" height  = "230" width="400" src={{$item->url}}>
             </div>
             <div class="card-content">
               <div style= "display:flex;justify-content:end; margin: 4px;">               
@@ -29,6 +29,40 @@
             <li><a id = "delete-menu-item">Delete Item</a></li>
           </ul> 
         </div>
+
+
+        <form id = "update-form" action="{{url('/menu/update',['id'=>$item->id])}}">
+        {{csrf_field()}}
+        <div id="modal1" class="modal">
+        <div class="modal-content">
+          <div class="row">
+              <div class="input-field col s6">
+                <textarea  name = "food" id="food-textarea" class="materialize-textarea" data-length="30" placeholder="Chicken..." value = {{$item->name}}></textarea>
+                <label for="food-textarea">Food Name</label>
+              </div>
+              <div class="input-field col s6">
+                <textarea  name = "amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00" value = {{$item->amount}}></textarea>
+                <label for="amount-textarea">Amount</label>
+                </div>
+             
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                  <textarea name = "description" id="description-textarea" class="materialize-textarea" data-length="50" placeholder="Description(Optional)..." value = {{$item->description}}></textarea>
+                  <label for="description-textarea">Description</label>
+                </div>
+              </div>
+        <div class="end-rtl">
+          <div id = "update" class="update-menu menu-decor">
+            UPDATE
+          </div>
+          <div style="margin-left:10px; margin-right:20px; margin-top:10px;" class="modal-close">
+             CLOSE
+            </div>
+        </div>
+      </div>
+    </div>
+  </form>
       @endforeach  
       @else
       <div id = "card-row">
@@ -43,44 +77,7 @@
       @endif
     </div>
     </div>
-
-
-    
-    
-
-  <form id = "modifier-form" action="">
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-          <div class="row">
-              <div class="input-field col s6">
-                <textarea  name = "food" id="food-textarea" class="materialize-textarea" data-length="30" placeholder="Chicken..."></textarea>
-                <label for="food-textarea">Food Name</label>
-              </div>
-              <div class="input-field col s6">
-                <textarea  name = "amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00"></textarea>
-                <label for="amount-textarea">Amount</label>
-                </div>
-             
-            </div>
-
-            
-            <div class="row">
-                <div class="input-field col s12">
-                  <textarea name = "description" id="description-textarea" class="materialize-textarea" data-length="50" placeholder="Description(Optional)..."></textarea>
-                  <label for="description-textarea">Description</label>
-                </div>
-              </div>
-        <div class="end-rtl">
-          <div class="update-menu menu-decor">
-            UPDATE
-          </div>
-          <div style="margin-left:10px; margin-right:20px; margin-top:10px;" class="modal-close">
-             CLOSE
-            </div>
-        </div>
-      </div>
-    </div>
-  </form>
+  
     
     <div id = "input-row" class="row">
           <form id = "menu-form" class="col s12" action="{{url('/addmenu')}}" method="POST" enctype="multipart/form-data">
@@ -112,7 +109,7 @@
                       <input id = "file-path-text" class="file-path validate" type="text">
                     </div>
                   </div>
-          <a id = "add-to-menu"class="btn-floating btn-large black pulse"><i class="material-icons">done</i></a>
+          <a  id = "add-to-menu"class="btn-floating btn-large  black pulse"><i class="material-icons">done</i></a>
           </form>
         </div>  
     </div>
@@ -120,7 +117,10 @@
    $('#add-to-menu').on('click',function(){
       $("#menu-form").submit()
     })
-    $('#delete-menu-item').on('click',function(){
+    $('#update').on('click',function(){
+      $("#update-form").submit()
+    })
+     $('#delete-menu-item').on('click',function(){
       $("#delete-form").submit()
     })</script>
 @endsection
