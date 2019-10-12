@@ -42,8 +42,7 @@ Route::post('/addexp', 'ExpensesController@store');
 Route::get('/menu','MenuController@index');
 Route::post('/addmenu','MenuController@store');
 Route::post('/menu/delete/{id}', 'MenuController@destroy');
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 
 Route::post('/addexp', 'ExpensesController@store');
 
@@ -52,13 +51,16 @@ Route::get('/inventoryedit',function(){
 	return view('inventoryedit');
 });
 
-=======
+
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');
->>>>>>> Stashed changes
-=======
+
+
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');
->>>>>>> Stashed changes
+
+Route::post('/addexp', 'ExpensesController@store');
+Route::post('/menu/update/{id}','MenuController@update');
+
 
 ?>
