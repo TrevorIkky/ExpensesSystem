@@ -29,6 +29,8 @@ Route::get('/expenses',function(){
 Route::get('inventory','InventoryController@index');
 
 
+Route::get('/dashboard','FilterController@index');
+
 
 
 Route::get('/add', function(){
@@ -36,7 +38,7 @@ Route::get('/add', function(){
 });
 
 Route::get('/add','ExpensesController@index');
-Route::get('/dashboard','LoginController@successful_login');
+
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::get('/menu','MenuController@index');
@@ -61,6 +63,8 @@ Route::post('/menu/update/{id}','MenuController@update');
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');
-
+Route::get('/payments','PaymentsController@index');
+Route::post('/payments/addpayment','PaymentsController@store');
+Route::get('/filter/{month}','FilterController@filter');
 
 ?>
