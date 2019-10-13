@@ -66,5 +66,6 @@ Route::post('/menu/update/{id}','MenuController@update');
 Route::get('/payments','PaymentsController@index');
 Route::post('/payments/addpayment','PaymentsController@store');
 Route::get('/filter/{month}','FilterController@filter');
+Route::post('/payments/searchpayment','PaymentsController@searchPayment')
 
 ?>

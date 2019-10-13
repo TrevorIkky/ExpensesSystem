@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="rtl-alignment">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="materialboxed" height="230" width="400" src={{$item->url}}>
+                        <img class="materialboxed" height="200" width="400" src={{$item->url}}>
                     </div>
                     <div class="card-content">
                         <div style="display:flex;justify-content:end; margin: 4px;">

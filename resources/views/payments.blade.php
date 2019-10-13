@@ -4,16 +4,24 @@
 
 <div class="rtl-alignment inputs-container">
     <div class="expenses-history">
-        <div id="history-header">
+        <div id="payments-history-header">
             <h6  style = "margin-top:-5px;"id="recently-added">Foods Sold</h6>
-            <div id="foods-sold-chart" style="height: 400px; width: 100%; padding-right:30px; margin-left:-10px;"></div>
+            @if (count($monthpayments)>0 && count($menus)>0)
+              <div id="foods-sold-chart" style="height: 400px; width: 100%; padding-right:30px; margin-left:-10px;"></div>
+            @else   
+            <div style="width:100%; text-align:center; margin-top:40px;">Can not display chart. No data available</div> 
+            @endif
+          
         </div>
     </div>
 
     <div style="height:100% margin:40px; background:silver;width:1px;" class="seperator"></div>
 
     <div id="input-row" class="row">
-        <div class="row">
+
+    <form  id="search-payments" method = "POST" action = "{{url('payments/searchpayment')}}">
+      {{csrf_field()}}
+      <div class="row">
             <div style="width:86%; margin-right:10px;" class="input-field inline">
                 <input name="phonenumber" id="number" type="number" class="validate" data-length="10">
                 <label for="number">Phone Number</label>
@@ -21,6 +29,7 @@
             </div>
             <a style="margin-left:15px;" class="dropdown-trigger" href="#" data-target='dropdown1'><i class="material-icons " style="cursor:pointer" >more_vert</i>  </a>
         </div>
+    </form>
 
         <ul id='dropdown1' class='dropdown-content'>
             <li><a class="modal-trigger" href="#modal1">Add payment</a></li>
@@ -76,7 +85,7 @@
    <div id = "card-row">  
         <div style = "width:100%; border-radius:10px;" id = "payments-history-card" class="card">
           <div  class="card-content">
-            <p>You have no recent payments</p>
+            <p>You have no payments</p>
           </div>
         </div>    
     </div> 
@@ -87,44 +96,86 @@
 
  
 <script>
-window.onload = function () {
+window.onload = function() {
+    
 
-$('#add-cash').on('click',function(){
-$("#add-payments-form").submit();
-})
-var chart = new CanvasJS.Chart("foods-sold-chart", {
-	animationEnabled: true,
-	title:{
-		
-	},
-	
-	data: [{
-		type: "doughnut",
-		innerRadius: 500,
-	
-		toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
-		indexLabel: "{name} - #percent%",
-		dataPoints: [
-			{ y: 450, name: "Food" },
-			{ y: 120, name: "Insurance" },
-			{ y: 300, name: "Travelling" },
-			{ y: 800, name: "Housing" },
-			{ y: 150, name: "Education" },
-			{ y: 150, name: "Shopping"},
-			{ y: 250, name: "Others" }
-		]
-	}]
+$("#number").on('keyup', function (e) {
+    if (e.keyCode === 13) {
+      $("#search-payments").submit();
+    }
 });
-chart.render();
 
-function explodePie (e) {
-	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-	} else {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+
+	var payments = {!!json_encode($monthpayments)!!}
+	var menus = {!!json_encode($menus)!!}
+
+    if(!payments || !menus){
+    
+
+    }else{
+        var items = []
+
+	payments.forEach(el => {
+		var it = items.find(element => element.base == el.amount)
+		if (it) {
+			it.total += el.amount
+		} else {
+			var menuitem = menus.find(item => item.amount == el.amount)
+			var name;
+			if (menuitem)
+				name = menuitem.name
+			else
+				name = "Other"
+			items.push({
+				label: name,
+				base: el.amount,
+				total: el.amount
+			})
+		}
+	})
+
+
+	var chartData = [];
+
+	items.forEach(item => {
+		chartData.push({
+			y: item.total,
+			name: item.label
+		})
+	})
+
+
+	$('#add-cash').on('click', function() {
+		$("#add-payments-form").submit();
+	})
+	var chart = new CanvasJS.Chart("foods-sold-chart", {
+		animationEnabled: true,
+		title: {
+
+		},
+
+		data: [{
+			type: "doughnut",
+			innerRadius: 500,
+			toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+			indexLabel: "{name} - #percent%",
+			dataPoints: chartData
+		}]
+	});
+	chart.render();
+
+	function explodePie(e) {
+		if (typeof(e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+			e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+		} else {
+			e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+		}
+		e.chart.render();
 	}
-	e.chart.render();
-}
+    }
+
+
+	
 
 }
 </script>

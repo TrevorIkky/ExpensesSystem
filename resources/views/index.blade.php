@@ -34,7 +34,6 @@
 
 <script>
 window.onload = function() {
-
 var expenses = {!! json_encode($expenses ) !!}
 var payments = {!! json_encode($payments ) !!}
 var water = 0;
@@ -64,12 +63,9 @@ expenses.forEach(element=>{
          other += element.amount;
          break;
         default:
-
     }
 })
-
 var total = water+electricity+rent+groceries+other+paymentTotal;
-
 console.log(water);
 var chart = new CanvasJS.Chart("chart-container", {
 	animationEnabled: true,
@@ -91,7 +87,6 @@ var chart = new CanvasJS.Chart("chart-container", {
 	}]
 });
 chart.render();
-
 }
 </script>
 @else

@@ -9,7 +9,8 @@ use SmoDav\Mpesa\Laravel\Facades\Registrar;
 use SmoDav\Mpesa\Laravel\Facades\STK;
 use Validator;
 use App\Payments;
-
+use App\Menu;
+use Carbon\Carbon;
 class PaymentsController extends Controller
 {
     /**
@@ -25,7 +26,11 @@ class PaymentsController extends Controller
     public function index()
     {  
         $payments = Payments::orderBy('created_at','desc')->take(2)->get();
-        return view('payments',['payments'=>$payments]);
+        $startDate = new Carbon('first day of  this month');
+        $endDate  = new Carbon('first day of next month');
+        $menu = Menu::all();
+        $monthlyPayments = Payments::whereBetween('created_at', [$startDate,$endDate])->get();
+        return view('payments',['payments'=>$payments,'menus'=>$menu,'monthpayments'=>$monthlyPayments]);
       
     }
 
@@ -43,6 +48,23 @@ class PaymentsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function searchPayment(Request $request){
+        $validator = Validator::make($request->all(),[
+            "phonenumber"=>"required|min:4|max:13",
+        ]);
+
+        if($validator->fails()){
+            return redirect('/payments')->withErrors($validator)->withInput();
+        }else{
+            $startDate = new Carbon('first day of  this month');
+            $endDate  = new Carbon('first day of next month');
+            $menu = Menu::all();
+            $monthlyPayments = Payments::whereBetween('created_at', [$startDate,$endDate])->get();
+            $payments = Payments::where('phonenumber', $request->get('phonenumber'))->get();
+            return view('payments',['payments'=>$payments,'menus'=>$menu,'monthpayments'=>$monthlyPayments]);
+        }
     }
 
     /**
