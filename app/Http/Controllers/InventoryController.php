@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -47,12 +48,25 @@ class InventoryController extends Controller
    }
 
    public function edit(Post $drink){
-      $posts=DB::select('select * from drinks where FoodTypeNo=?',[$drink]);
-      return view('inventory',['posts'=>$posts]);
+      //$posts=DB::select('select * from drinks where FoodTypeNo=?',[$drink]);
+      return view('inventoryedit',['post']);
       
    }  
+
+   public function show(Post $post)
+    {
+        //
+        return view('posts.inventoryshow',compact('post'));
+    }
    
-   public function update(Request $request,Post $FoodTypeNo){
+    public function i_index()
+    {
+        //
+        $posts = Post::all();
+
+        return view('posts.inventoryindex', compact('posts'));
+    }
+   public function update(Request $request,Post $post){
    
       $DrinkName=$request->get('DrinkName');
       $unitOfMeasurement=$request->get('unitOfMeasurement');
@@ -62,12 +76,12 @@ class InventoryController extends Controller
       $vendor=$request->get('vendor');
       $quantity=$request->get('quantity');
 
-      $posts=DB::update('update drinks set DrinkName=?, unitOfMeasurement=?, inventoryAmount=?, costPerUnit=?, totalCost=?, vendor=?, quantity=? where FoodTypeNo=?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity, $FoodTypeNo]);
+      $post=DB::update('update drinks set DrinkName=?, unitOfMeasurement=?, inventoryAmount=?, costPerUnit=?, totalCost=?, vendor=?, quantity=? where FoodTypeNo=?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity]);
       
-      if($posts){
-        $red=redirect('posts')->with('success','Data has been updated');
+      if($post){
+        $red=redirect('post.inventoryindex')->with('success','Data has been updated');
       }else{
-         $red=redirect('posts/inventoryedit'.$FoodTypeNo)->with('danger','Error');
+         $red=redirect('post.inventoryshow'.$post)->with('danger','Error');
       }
    
    
@@ -75,9 +89,10 @@ class InventoryController extends Controller
 
    } 
    
-   public function destroy($FoodTypeNo){
-      $posts=DB::delete('delete from drinks where FoodTypeNo=?',[$FoodTypeNo]);
-      $red=redirect()->back();
+   public function destroy(Post $post ){
+     // $post=DB::delete('delete from drinks where FoodTypeNo=?',[$FoodTypeNo]);
+     $post->delete();
+      return redirect()->route('post.inventoryindex')->with('success','Post deleted successfully');
    }
 
 }

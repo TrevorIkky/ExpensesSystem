@@ -18,9 +18,10 @@ Route::get('/cart', 'PagesController@cart');
 Route::get('/foodAdmin', 'PagesController@foodAdmin');
 Route::get('/order', 'PagesController@order');
 Route::get('/Total', 'PagesController@Total');
-
+Route::get('/', 'InventoryController@index');
 
 Route::resource('posts','PostsController');
+Route::resource('post','InventoryController');
 RouteRoute::get('/inventory', function(){
     return view('inventory');
 });
