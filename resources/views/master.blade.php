@@ -19,32 +19,34 @@
 </head>
 
 <body>
-        <div id="menus" class="menus">
-            <img id="close-nav-bar" width = "20" height = "20" src="/images/delete.png"/>
-                <ul>
-                     <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
-                     <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
-                     <li><a href = "{{url('/add')}}">EXPENSES</a></li>
-                     <li><a href = "{{url('/menu')}}">MENU</a></li>
-                     <li>PAYMENTS</li>
-                </ul>
-            </div>
-   <div id="main-container" class="main-container">
-       <div class="toolbar">
-           <h4 id = "header-text">Toni's Kitchen</h4>
-           <div id="open-nav-bar" class="open-nav-bar">
-               <div class="bar"></div>
-               <div class="bar"></div>
-               <div class="bar"></div>
-           </div>
-       </div>
-       @yield('main-content')
-   </div> 
+<div id="menus" class="menus">
+    <img id="close-nav-bar" width="20" height="20" src="/images/delete.png" />
+    <ul>
+        <li><a href="{{url('/dashboard')}}">OVERVIEW</a></li>
+        <li><a href="{{url('/inventory')}}">INVENTORY</a></li>
+        <li><a href="{{url('/add')}}">EXPENSES</a></li>
+        <li><a href="{{url('/menu')}}">MENU</a></li>
+        <li><a href="{{url('/payments')}}">PAYMENTS</a></li>
+
+    </ul>
+</div>
+<div id="main-container" class="main-container">
+    <div class="toolbar">
+        <h4 id="header-text">Toni's Kitchen</h4>
+        <div id="open-nav-bar" class="open-nav-bar">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    @yield('main-content')
+</div>
 
 <script type="text/javascript" src="{{url ('js/login.js') }}" defer></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 <script type="text/javascript" src = "/js/master.js"></script>
 <script type="text/javascript" src="/js/dropzone.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js" defer></script>
 </body>
 </html>
