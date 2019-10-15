@@ -201,8 +201,8 @@ function viewCrockery(){
     x.style.display="none";
   }
 
-  if(ff.style.display=='none'){
-    ff.style.display="block";
+  if(ff.style.display=='block'){
+    ff.style.display="none";
   }else{
     ff.style.display="none";
   }

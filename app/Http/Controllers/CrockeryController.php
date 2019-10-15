@@ -73,7 +73,7 @@ class CrockeryController extends Controller
     {
         //
         $crockery = DB::select('select * from crockery where crockeryid = ?',[$crockeryid]);
-      return view('inventoryedit',['crockery'=>$crockery]);
+      return view('inventoryeditc',['crockery'=>$crockery]);
        
     }
 

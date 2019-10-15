@@ -78,7 +78,7 @@ class FoodController extends Controller
     {
         //
       $foods = DB::select('select * from fooditems where foodTypeNo = ?',[$foodTypeNo]);
-      return view('inventoryedit',['foods'=>$foods]);
+      return view('inventoryeditf',['foods'=>$foods]);
        
     }
 
