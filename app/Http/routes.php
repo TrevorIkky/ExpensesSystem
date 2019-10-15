@@ -47,10 +47,20 @@ Route::post('/menu/delete/{id}', 'MenuController@destroy');
 Route::post('/addexp', 'ExpensesController@store');
 
 Route::post('insert','InventoryController@insert');
-Route::get('/inventoryedit',function(){
-	return view('inventoryedit');
-});
+Route::post('insertfood','FoodController@insertfood');
+Route::post('insertcrockery','CrockeryController@insertcrockery');
 
+Route::get('edit/{foodTypeNo}','InventoryController@show');
+Route::post('edit/{foodTypeNo}','InventoryController@edit');
+Route::get('delete/{foodTypeNo}','InventoryController@destroy');
+
+Route::get('editf/{}','FoodController@show');
+Route::post('editf/{foodTypeNo}','FoodController@edit');
+Route::get('deletef/{foodTypeNo}','FoodController@destroy');
+
+Route::get('editc/{}','CrockeryController@show');
+Route::post('editc/{crockeryid}','CrockeryController@edit');
+Route::get('deletec/{crockeryid}','CrockeryController@destroy');
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');

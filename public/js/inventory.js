@@ -99,6 +99,9 @@ function viewAll(){
     }
 
 function viewDrinks(){
+  var fd=document.getElementById("footer-text-drinks");
+  var ff=document.getElementById("footer-text-fooditems");
+  var fc=document.getElementById("footer-text-crockery");
   var w=document.getElementById("InventoryTable crockery");
   var x=document.getElementById("InventoryTable drinks");
   var y=document.getElementById("InventoryTable");
@@ -109,7 +112,18 @@ function viewDrinks(){
   }else{
     x.style.display="none";
   }
-  
+ 
+  if(fc.style.display=="block"){
+    fc.style.display="none";
+    }else{
+    fc.style.display="none";
+    }
+
+  if(ff.style.display=="block"){
+      ff.style.display="none";
+    }else{
+      ff.style.display="none";
+    }
   if(w.style.display=="block"){
     w.style.display="none";
     }else{
@@ -130,6 +144,9 @@ function viewDrinks(){
 }
 
 function viewFood(){
+  var fd=document.getElementById("footer-text-drinks");
+  var ff=document.getElementById("footer-text-fooditems");
+  var fc=document.getElementById("footer-text-crockery");
   var w=document.getElementById("InventoryTable crockery");
   var x=document.getElementById("InventoryTable fooditems");
   var y=document.getElementById("InventoryTable");
@@ -142,6 +159,12 @@ function viewFood(){
     x.style.display="none";
   }
   
+  if(fc.style.display=="block"){
+    fc.style.display="none";
+    }else{
+    fc.style.display="none";
+    }
+
   if(w.style.display=="block"){
     w.style.display="none";
     }else{
@@ -163,6 +186,10 @@ function viewFood(){
 }
 
 function viewCrockery(){
+
+  var ff=document.getElementById("footer-text-fooditems");
+  var fc=document.getElementById("footer-text-crockery");
+  var fd=document.getElementById("footer-text-drinks");
   var w=document.getElementById("InventoryTable");
   var x=document.getElementById("InventoryTable crockery");
   var y=document.getElementById("InventoryTable drinks");
@@ -174,16 +201,40 @@ function viewCrockery(){
     x.style.display="none";
   }
 
-  if(y.style.display=='block'){
-    y.style.display="none";
+  if(ff.style.display=='none'){
+    ff.style.display="block";
   }else{
-    y.style.display="none";
+    ff.style.display="none";
+  }
+
+  if(fc.style.display=='none'){
+    fc.style.display="block";
+  }else{
+    fc.style.display="none";
+  }
+
+  if(fd.style.display=='block'){
+    fd.style.display="none";
+  }else{
+    fd.style.display="none";
   }
 
   if(w.style.display=='block'){
     w.style.display="none";
   }else{
     w.style.display="none";
+  }
+
+  if(y.style.display=='block'){
+    y.style.display="none";
+  }else{
+    y.style.display="none";
+  }
+
+  if(z.style.display=='block'){
+    z.style.display="none";
+  }else{
+    z.style.display="none";
   }
 }
 
@@ -196,12 +247,69 @@ function insertDrinks(){
   }
 }
 
-function editDrinks(){
-  var x=document.getElementById("editform-drinks");
-  
+function insertFood(){
+  var x=document.getElementById("insertform-fooditems");
   if(x.style.display=='none'){
     x.style.display="block";
   }else{
     x.style.display="none";
   }
 }
+
+function insertCrockery(){
+  var x=document.getElementById("insertform-crockery");
+  if(x.style.display=='none'){
+    x.style.display="block";
+  }else{
+    x.style.display="none";
+  }
+}
+
+// function editDrinks(){
+//   var x=document.getElementById("insertform-drinks");
+//   var y=document.getElementById("edit-column-drinks");
+//   var z=document.getElementById("delete-column-drinks");
+//   if(x.style.display=='block'){
+//     x.style.display="none";
+//   }else{
+//     x.style.display="none";
+//   }
+
+//   if(y.style.display=='none'){
+//     y.style.display="block";
+//   }else{
+//     y.style.display="none";
+//   }
+
+  
+//   if(z.style.display=='block'){
+//     z.style.display="none";
+//   }else{
+//     z.style.display="none";
+//   }
+// }
+
+// function deleteDrinks(){
+//   var x=document.getElementById("delete-column-drinks");
+//   var y=document.getElementById("insertform-drinks");
+//   var z=document.getElementById("edit-column-drinks");
+
+//   if(x.style.display=='none'){
+//     x.style.display="block";
+//   }else{
+//     x.style.display="none";
+//   }
+
+//   if(y.style.display=='block'){
+//     y.style.display="none";
+//   }else{
+//     y.style.display="none";
+//   }
+
+//   if(z.style.display=='block'){
+//     z.style.display="block";
+//   }else{
+//     z.style.display="none";
+//   }
+// }
+

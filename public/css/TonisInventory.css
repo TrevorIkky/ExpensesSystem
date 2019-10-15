@@ -87,9 +87,17 @@ body {
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.car-deck{
-    top: 20;
+.card-footer{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
+#footer-text{
+    
+    text-shadow: #eb28fd;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
 .btn btn-success{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
@@ -118,12 +126,25 @@ body {
      margin-top: 3%;
      margin-left: 40%;
  }
+
  #insertform-drinks{
     margin-left: 30%;
     color: #e9ecef;
     
  }
+
+ #insertform-crockery{
+    margin-left: 30%;
+    color: #e9ecef;
+    
+ }
  #editform-drinks{
+    margin-left: 30%;
+    color: #e9ecef;
+    
+ }
+
+ #insertform-fooditems{
     margin-left: 30%;
     color: #e9ecef;
     

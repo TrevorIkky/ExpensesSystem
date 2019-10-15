@@ -49,7 +49,9 @@
                     <p class="card-text">Views drinks in stock</p>
                   </div>
                   <div class="card-footer">
-                    <small class="text-muted"></small>
+                    <div id="footer-text">
+                      <small class="text-muted"><p id="footer-text-drinks">Viewing Drinks</p></small>
+                    </div>
                   </div>
         </div>
     
@@ -63,7 +65,9 @@
                     <p class="card-text">Views crockery in stock</p>
                   </div>
                   <div class="card-footer">
-                    <small class="text-muted"></small>
+                    <div id="footer-text">
+                      <small class="text-muted" ><p id="footer-text-crockery" style="display: none">Viewing Crockery</p></small>
+                    </div>
                   </div>
         </div>
         </div>
@@ -76,7 +80,9 @@
                     <p class="card-text">Views food items in stock</p>
                   </div>
                   <div class="card-footer">
-                    <small class="text-muted"></small>
+                  <div id="footer-text">
+                      <small class="text-muted" ><p id="footer-text-fooditems" style="display: none">Viewing Food Items</p></small>
+                    </div>
                   </div>
         </div>
         </div>
@@ -131,7 +137,7 @@
       <th id="table-head-text" scope="col">Inventory Amount</th>
       <th id="table-head-text" scope="col">Cost per Unit</th>
       <th id="table-head-text" scope="col">Total Cost</th>
-      <th id="table-head-text" scope="col">Vendor</th>
+      <th id="table-head-text" scope="col " >Vendor</th>
       <th id="table-head-text" scope="col">Quantity</th>
       </tr>
       
@@ -147,18 +153,21 @@
       <td>{{ $drink->totalCost }}</td>
       <td>{{ $drink->vendor }}</td>
       <td>{{ $drink->quantity }}</td>
+      <td id="edit-column-drinks" ><a href = 'edit/{{ $drink->foodTypeNo }}'>Edit</a></td>
+      <td id="delete-column-drinks"><a href = 'delete/{{ $drink->foodTypeNo }}'>Delete</a></td>
   </tr>
   @endforeach 
   </tbody>
  </table>
-</div>
-
 
  <div id="insertfield">
  <button type="button" class="btn" onclick="insertDrinks()">Insert New</button>
- <button type="button" class="btn" onclick="editDrinks()">Edit</button>
- <button type="button" class="btn" onclick="insertDrinks()">Delete</button>
- </div>
+</div>
+
+</div>
+
+
+ 
 
  <div id="insertform-drinks"  style="display: none">
  
@@ -195,44 +204,6 @@
 </form>
  </div>
 
-
- <div id="editform-drinks"  style="display: none">
-
-   <form action="update" id="drinksform" method="POST" >
-     {{csrf_field()}}
-    <input type="hidden" name="_method" placeholder="Drink Name" value="PATCH"/>
- 
- <div class="form-group col-sm-6" >
-    <input type="text" class="form-control"  name="DrinkName" placeholder="Drink Name" value="{{$drink->DrinkName}}"/>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <input type="text" class="form-control"  name="unitOfMeasurement" placeholder="Unit of Measurement" value="{{$drink->unitOfMeasurement}}"/>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <input type="text" class="form-control"  name="inventoryAmount" placeholder="Inventory Amount" value="{{$drink->inventoryAmount}}"/>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <input type="text" class="form-control"  name="costPerUnit" placeholder="Cost per Unit" value="{{$drink->costPerUnit}}"/>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <input type="text" class="form-control"  name="totalCost" placeholder="Total Cost" value="{{$drink->totalCost}}"/>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <input type="text" class="form-control"  name="vendor" placeholder="Vendor" value="{{$drink->vendor}}"/>
-  </div>
-
-  <div class="form-group col-sm-6">
-    <input type="text" class="form-control"  name="quantity"placeholder="Quantity" value="{{$drink->quantity}}"/>
-  </div>
-  <button type="submit" class="button-submit">Submit</button>
-</form>
- </div>
-
 <div id="InventoryTable fooditems" style="display: none">
 <input class="form-control" id="inventory-search-food" type="text" onkeyup="searchFood()" placeholder="Search Food Name">
 
@@ -261,11 +232,54 @@
       <td>{{ $food->totalCost }}</td>
       <td>{{ $food->vendor }}</td>
       <td>{{ $food->quantity }}</td>
+      <td><a href = 'editf/{{ $food->foodTypeNo }}'>Edit</a></td>
+      <td><a href = 'deletef/{{ $food->foodTypeNo }}'>Delete</a></td>
   </tr>
   @endforeach 
   </tbody>
  </table>
+
+ <div id="insertfield">
+ <button type="button" class="btn" onclick="insertFood()">Insert New</button>
 </div>
+
+</div>
+
+<div id="insertform-fooditems"  style="display: none">
+ 
+ <form action="insertfood"id="fooditemsform" method="POST" >
+    {{csrf_field()}}   
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="FoodItemName" placeholder="Food Item Name">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="unitOfMeasurement" placeholder="Unit Of Measurement">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="inventoryAmount" placeholder="Inventory Amount">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="costPerUnit" placeholder="Cost Per Unit">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="totalCost" placeholder="Total Cost">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="vendor" placeholder="Vendor">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="quantity"placeholder="Quantity">
+      </div>
+      <button type="submit" class="button-submit">Submit</button>
+</form>
+ </div>
 
 <div id="InventoryTable crockery" style="display: none">
 <table class="table-bordered" id="Inventory-Table">
@@ -282,14 +296,38 @@
   @foreach ($crockery as $crockery)
   <tr>
       <th scope="row">{{ $crockery->crockeryid }}</th>
-      <td>{{ $crockery->crockeryName }}</td>
-      <td>{{ $crockery->Quantity }}</td>
+      <td>{{ $crockery->crockeryname }}</td>
+      <td>{{ $crockery->quantity }}</td>
+      <td><a href = 'editc/{{ $crockery->crockeryid }}'>Edit</a></td>
+      <td><a href = 'deletec/{{ $crockery->crockeryid }}'>Delete</a></td>
   </tr>
   @endforeach 
   </tbody>
  </table>
+
+ <div id="insertfield">
+    <button type="button" class="btn" onclick="insertCrockery()">Insert New</button>
+ </div>
+
 </div>
 
+
+<div id="insertform-crockery"  style="display: none">
+ 
+ <form action="insertcrockery"id="crockeryform" method="POST" >
+    {{csrf_field()}}   
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="crockeryname" placeholder="Crockery Name">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control"  name="quantity" placeholder="Quantity">
+      </div>
+
+      <button type="submit" class="button-submit">Submit</button>
+</form>
+ </div>
 <script type="text/javascript" src="{{url ('js/inventory.js') }}" defer></script>
 <script type="text/javascript" src = "/js/inventory.js"></script>
 <script type="text/javascript" src = "/js/tables.js"></script>

@@ -27,7 +27,7 @@ class InventoryController extends Controller
 
    public function insert(Request $request){
       
-       
+        
       $DrinkName=$request->input('DrinkName');
       $unitOfMeasurement=$request->input('unitOfMeasurement');
       $inventoryAmount=$request->input('inventoryAmount');
@@ -35,6 +35,8 @@ class InventoryController extends Controller
       $totalCost=$request->input('totalCost');
       $vendor=$request->input('vendor');
       $quantity=$request->input('quantity');
+
+      
 
       $data=array('DrinkName'=>$DrinkName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
       
@@ -47,16 +49,30 @@ class InventoryController extends Controller
       return view('inventory');
    }
 
-   public function edit(Post $drink){
+   public function edit(Request $request, $foodTypeNo){
       //$posts=DB::select('select * from drinks where FoodTypeNo=?',[$drink]);
-      return view('inventoryedit',['post']);
+      $DrinkName=$request->input('DrinkName');
+      $unitOfMeasurement=$request->input('unitOfMeasurement');
+      $inventoryAmount=$request->input('inventoryAmount');
+      $costPerUnit=$request->input('costPerUnit');
+      $totalCost=$request->input('totalCost');
+      $vendor=$request->input('vendor');
+      $quantity=$request->input('quantity');
+
+      //$data=array('DrinkName'=>$DrinkName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
+      DB::update('update drinks set DrinkName = ?, unitOfMeasurement = ?, inventoryAmount = ?, costPerUnit = ?, totalCost = ?, vendor = ?, quantity = ? where foodTypeNo = ?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity,$foodTypeNo]);
+      echo "Record updated successfully.<br/>";
+      echo '<a href = "/inventory">Click Here</a> to go back.';
+      
       
    }  
 
-   public function show(Post $post)
+   public function show($foodTypeNo)
     {
         //
-        return view('posts.inventoryshow',compact('post'));
+        $drinks = DB::select('select * from drinks where foodTypeNo = ?',[$foodTypeNo]);
+      return view('inventoryedit',['drinks'=>$drinks]);
+       
     }
    
     public function i_index()
@@ -76,7 +92,7 @@ class InventoryController extends Controller
       $vendor=$request->get('vendor');
       $quantity=$request->get('quantity');
 
-      $post=DB::update('update drinks set DrinkName=?, unitOfMeasurement=?, inventoryAmount=?, costPerUnit=?, totalCost=?, vendor=?, quantity=? where FoodTypeNo=?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity]);
+      $data=DB::update('update drinks set DrinkName=?, unitOfMeasurement=?, inventoryAmount=?, costPerUnit=?, totalCost=?, vendor=?, quantity=? where FoodTypeNo=?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity]);
       
       if($post){
         $red=redirect('post.inventoryindex')->with('success','Data has been updated');
@@ -84,15 +100,16 @@ class InventoryController extends Controller
          $red=redirect('post.inventoryshow'.$post)->with('danger','Error');
       }
    
-   
-   return redirect()->route('inventoryedit')->with('success','Data Updated');
+      DB::table('drinks')->update($data);
+      return redirect()->back();
 
    } 
    
-   public function destroy(Post $post ){
-     // $post=DB::delete('delete from drinks where FoodTypeNo=?',[$FoodTypeNo]);
-     $post->delete();
-      return redirect()->route('post.inventoryindex')->with('success','Post deleted successfully');
+   public function destroy($foodTypeNo){
+     DB::delete('delete from drinks where foodTypeNo=?',[$foodTypeNo]);
+     echo "Record deleted successfully.<br/>";
+     echo '<a href = "/inventory">Click Here</a> to go back.';
+    
    }
 
 }
