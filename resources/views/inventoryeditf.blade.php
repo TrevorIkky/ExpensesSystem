@@ -14,7 +14,7 @@
      <input type="hidden" name = "_token" value = "<?php echo csrf_token(); ?>"/>
      @foreach ($foods as $food)
      <div class ="form-group">
-       <input type="text" name="DrinkName" class="form-control" value="{{$food->DrinkName}}" />
+       <input type="text" name="FoodItemName" class="form-control" value="{{$food->FoodItemName}}" />
      </div>
 
      <div class ="form-group">

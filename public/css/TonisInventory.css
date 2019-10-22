@@ -15,7 +15,7 @@ body {
 
 }
 #card-container{
-    background: #000000d2;
+    background: #ffffffb6;
 }
 #cards{
     margin-top: 5%;
@@ -74,13 +74,7 @@ body {
     text-align: center;
     
 }
-.card-img-top{
-    /* height: 50%; */
-    /* width: 25% */
-    width: 50%;
-    height: 12vw;
-    object-fit: cover;
-}
+
 
 .card-text {
     word-wrap: break-word;
@@ -102,10 +96,7 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
-.table table-bordered{
-    
 
-}
 #table-head-text{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 

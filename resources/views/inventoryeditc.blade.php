@@ -9,22 +9,21 @@
      <br>     
    
     
-     <form method="post" action="/editc/<?php echo $$crockery[0]->$crockeryid?>">
-   
+     <form method="post" action="/edit/<?php echo $crockery[0]->crockeryid?>">
+    
      <input type="hidden" name = "_token" value = "<?php echo csrf_token(); ?>"/>
      @foreach ($crockery as $crockery)
      <div class ="form-group">
-       <input type="text" name="DrinkName" class="form-control" value="{{$crockery->crockeryname}}" />
+       <input type="text" name="crockeryname" class="form-control" value="{{$crockery->crockeryname}}" />
      </div>
 
      <div class ="form-group">
-       <input type="text" name="unitOfMeasurement" class="form-control" value="{{$crockery->quantity}}" />
-
-
+       <input type="text" name="quantity" class="form-control" value="{{$crockery->quantity}}" />
+     </div>
      <div class ="form-group">
      <a href = "/inventory"><input type="submit"  class="btn" value="Update"/></a>
      </div>
-      @endforeach
+     @endforeach
      </form>
      
  </div>

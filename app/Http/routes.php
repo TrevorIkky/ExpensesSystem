@@ -29,6 +29,7 @@ Route::get('/expenses',function(){
 Route::get('inventory','InventoryController@index');
 
 
+
 Route::get('/dashboard','FilterController@index');
 
 
@@ -56,12 +57,12 @@ Route::get('edit/{foodTypeNo}','InventoryController@show');
 Route::post('edit/{foodTypeNo}','InventoryController@edit');
 Route::get('delete/{foodTypeNo}','InventoryController@destroy');
 
-Route::get('editf/{}','FoodController@show');
-Route::post('editf/{foodTypeNo}','FoodController@edit');
-Route::get('deletef/{foodTypeNo}','FoodController@destroy');
+Route::get('editf/{}','FoodController@showfood');
+Route::post('editf/{foodTypeNo}','FoodController@editfood');
+Route::get('deletef/{foodTypeNo}','FoodController@destroyfood');
 
-Route::get('editc/{}','CrockeryController@show');
-Route::post('editc/{crockeryid}','CrockeryController@edit');
+Route::get('edit/{}','CrockeryController@show');
+Route::post('edit/{crockeryid}','CrockeryController@edit');
 Route::get('deletec/{crockeryid}','CrockeryController@destroy');
 
 Route::post('/addexp', 'ExpensesController@store');

@@ -20,10 +20,8 @@ class InventoryController extends Controller
         return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods,"crockery"=>$crockery]);
      }
 
-   // public public function insertform()
-   // {
-   //    return view('/inventory');
-   // }
+
+   
 
    public function insert(Request $request){
       

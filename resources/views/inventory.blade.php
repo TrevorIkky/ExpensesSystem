@@ -1,34 +1,7 @@
-<html>
-<head>
-        <title>INVENTORY</title>
-        <link rel="stylesheet" type="text/css" href="css/TonisInventory.css">
-        <link rel="stylesheet" type="text/css" href="css/materialize.css">
-        <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/dt/dt-1.10.18/datatables.min.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-<body>
-    
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="">
-                <img src="images/Toni'sLogo.jpg" width="70" height="50" class="d-inline-block align-top" alt="">
-                Toni's Kitchen
-        </a>
-        <button class="navbar-toggler" type="button"data-toggle="collapse"data-target="#navbarNavAltMarkup"aria-controls="navbarNavAltMarkup"aria-expanded="false"aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-        </button>
-          <div class="collapse navbar-collapse"id="navbarNavAltMarkup">
-           <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Dashboard</a>
-                <a class="nav-item nav-link active" href="{{url('/inventory')}}">Inventory <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Payments</a>
-                <a class="nav-item nav-link" href="{{url('/add')}}">Expenses</a>
-                <a class="nav-item nav-link disabled" href="#">Food Sold</a>
-              
-           </div>
-          </div>     
-    </nav>
+@extends('master')
+@extends('error')
+@section('main-content')
+
 
 <div id="inventory">
  <h1>INVENTORY</h1>
@@ -54,8 +27,27 @@
                     </div>
                   </div>
         </div>
-    
         </div>
+        
+        <!-- <div class="col-auto mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+
+
+        
         
         <div class="col-auto mb-3">
         <div class="card">
@@ -232,8 +224,8 @@
       <td>{{ $food->totalCost }}</td>
       <td>{{ $food->vendor }}</td>
       <td>{{ $food->quantity }}</td>
-      <td><a href = 'editf/{{ $food->foodTypeNo }}'>Edit</a></td>
-      <td><a href = 'deletef/{{ $food->foodTypeNo }}'>Delete</a></td>
+      <td><a href = "editf/{{ $food->foodTypeNo }}">Edit</a></td>
+      <td><a href = "deletef/{{ $food->foodTypeNo }}">Delete</a></td>
   </tr>
   @endforeach 
   </tbody>
@@ -298,8 +290,8 @@
       <th scope="row">{{ $crockery->crockeryid }}</th>
       <td>{{ $crockery->crockeryname }}</td>
       <td>{{ $crockery->quantity }}</td>
-      <td><a href = 'editc/{{ $crockery->crockeryid }}'>Edit</a></td>
-      <td><a href = 'deletec/{{ $crockery->crockeryid }}'>Delete</a></td>
+      <td><a href = "edit/{{ $crockery->crockeryid }}">Edit</a></td>
+      <td><a href = "deletec/{{ $crockery->crockeryid }}">Delete</a></td>
   </tr>
   @endforeach 
   </tbody>
@@ -335,8 +327,12 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/w/dt/dt-1.10.18/datatables.min.js"></script>
 
-</body>
 
+<script>
+  document.getElementById('edit_crockery').addEventListener('click',()=>{
+    document.getElementById('edit_crockery_form').submit();
+  });
+  
+</script>
 
-
-</html>
+@endsection

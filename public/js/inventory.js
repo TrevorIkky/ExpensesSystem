@@ -67,6 +67,9 @@ $(".flipper").click(function() {
 });
 
 function viewAll(){
+  var fd=document.getElementById("footer-text-drinks");
+  var ff=document.getElementById("footer-text-fooditems");
+  var fc=document.getElementById("footer-text-crockery");
   var w=document.getElementById("InventoryTable crockery");
   var x=document.getElementById("InventoryTable");
   var y=document.getElementById("InventoryTable drinks");
@@ -78,6 +81,12 @@ function viewAll(){
     x.style.display="none";
     }
        
+    if(fd.style.display=="none"){
+      fd.style.display="block";
+      }else{
+      fd.style.display="none";
+      }
+        
     if(w.style.display=="block"){
       w.style.display="none";
       }else{
@@ -113,6 +122,12 @@ function viewDrinks(){
     x.style.display="none";
   }
  
+  if(fd.style.display=="none"){
+    fd.style.display="block";
+    }else{
+    fd.style.display="none";
+    }
+
   if(fc.style.display=="block"){
     fc.style.display="none";
     }else{
@@ -157,6 +172,12 @@ function viewFood(){
     x.style.display="block";
   }else{
     x.style.display="none";
+  }
+  
+  if(ff.style.display=="none"){
+    ff.style.display="block";
+  }else{
+    ff.style.display="none";
   }
   
   if(fc.style.display=="block"){

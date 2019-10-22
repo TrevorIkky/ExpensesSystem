@@ -83,19 +83,14 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $foodTypeNo)
+    public function edit( Request $request, $crockeryid)
     {
-        //
-        $foodTypeNo=$request->input('foodTypeNo');
-        $FoodItemName=$request->input('FoodItemName');
-        $unitOfMeasurement=$request->input('unitOfMeasurement');
-        $inventoryAmount=$request->input('inventoryAmount');
-        $costPerUnit=$request->input('costPerUnit');
-        $totalCost=$request->input('totalCost');
-        $vendor=$request->input('vendor');
+        
+        $crockeryname=$request->input('crockeryname');
         $quantity=$request->input('quantity');
+        
 
-        DB::update('update fooditems set FoodItemName = ?, unitOfMeasurement = ?, inventoryAmount = ?, costPerUnit = ?, totalCost = ?, vendor = ?, quantity = ? where foodTypeNo = ?',[$FoodItemName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity,$foodTypeNo]);
+        DB::update('update crockery set crockeryname = ?, quantity = ? where crockeryid = ?',[$crockeryname,$quantity,$crockeryid]);
       echo "Record updated successfully.<br/>";
       echo '<a href = "/inventory">Click Here</a> to go back.';
       

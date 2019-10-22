@@ -74,7 +74,7 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($foodTypeNo)
+    public function showfood($foodTypeNo)
     {
         //
       $foods = DB::select('select * from fooditems where foodTypeNo = ?',[$foodTypeNo]);
@@ -88,10 +88,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $foodTypeNo)
+    public function editfood(Request $request, $foodTypeNo)
     {
         //
-        $foodTypeNo=$request->input('foodTypeNo');
         $FoodItemName=$request->input('FoodItemName');
         $unitOfMeasurement=$request->input('unitOfMeasurement');
         $inventoryAmount=$request->input('inventoryAmount');
@@ -124,7 +123,7 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($foodTypeNo)
+    public function destroyfood($foodTypeNo)
     {
         //
         DB::delete('delete from fooditems where foodTypeNo=?',[$foodTypeNo]);
