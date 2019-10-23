@@ -7,6 +7,10 @@
  <h1>INVENTORY</h1>
 </div>
 
+@if(Session::has('message'))
+       <p >{{ Session::get('message') }}</p>
+@endif
+
 <section id="custom">
 <div id="card-container">
   <div id="cards">
@@ -290,9 +294,15 @@
       <th scope="row">{{ $crockery->crockeryid }}</th>
       <td>{{ $crockery->crockeryname }}</td>
       <td>{{ $crockery->quantity }}</td>
-      <td><a href = "edit/{{ $crockery->crockeryid }}">Edit</a></td>
-      <td><a href = "deletec/{{ $crockery->crockeryid }}">Delete</a></td>
-  </tr>
+      <td><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Edit</a></td>
+
+      <td><a href = "/destroy/{{ $crockery->crockeryid }}">Delete</a></td>
+  </tr> 
+    </div>
+  </div>
+  
+</div>
+
   @endforeach 
   </tbody>
  </table>
@@ -320,6 +330,48 @@
       <button type="submit" class="button-submit">Submit</button>
 </form>
  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+
+  <form method='post' action='/save'>
+  {{csrf_field()}}
+   <table>
+     <tr>
+       <td colspan='2'><h1>Edit record</h1></td>
+     </tr>
+     <tr>
+       <td colspan="2">{{ csrf_field() }}</td>
+     </tr>
+     <tr>
+       <td>CrockeryID</td>
+       <td><input type='text' name='crockeryid' readonly value='{{ $crockery->crockeryid }}' ></td>
+     </tr>
+     <tr>
+       <td>Crockery Name</td>
+       <td><input type='text' name='crockeryname' value='{{ $crockery->crockeryname }}'></td>
+     </tr> 
+     <tr>
+       <td>Quantity</td>
+       <td><input type='number' name='quantity' value='{{ $crockery->quantity }}' ></td>
+     </tr>
+     <tr>
+       <td>&nbsp;<input type='hidden' value='{{ $crockery->crockeryid }}' name='editid'></td>
+       <td><input type='submit' name='submit' value='Submit'></td>
+     </tr>
+   </table>
+  </form>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+    </div>
+
 <script type="text/javascript" src="{{url ('js/inventory.js') }}" defer></script>
 <script type="text/javascript" src = "/js/inventory.js"></script>
 <script type="text/javascript" src = "/js/tables.js"></script>

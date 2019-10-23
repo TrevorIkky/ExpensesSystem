@@ -180,6 +180,12 @@ function viewFood(){
     ff.style.display="none";
   }
   
+  if(fd.style.display=="block"){
+    fd.style.display="none";
+  }else{
+    fd.style.display="none";
+  }
+
   if(fc.style.display=="block"){
     fc.style.display="none";
     }else{
@@ -285,7 +291,9 @@ function insertCrockery(){
     x.style.display="none";
   }
 }
-
+$(document).ready(function(){
+  $('.modal').modal();
+});
 // function editDrinks(){
 //   var x=document.getElementById("insertform-drinks");
 //   var y=document.getElementById("edit-column-drinks");

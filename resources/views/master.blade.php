@@ -49,5 +49,6 @@
 <script type="text/javascript" src = "/js/master.js"></script>
 <script type="text/javascript" src="/js/dropzone.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js" defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </body>
 </html>
