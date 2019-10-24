@@ -13,8 +13,8 @@
       <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
       <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
-      <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
-      <link rel="stylesheet" type="text/css" href="css/TonisInventory.css">
+     
+     
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nunito+Sans&display=swap" rel="stylesheet"> 
      <title>@yield('title')</title>
 </head>
