@@ -55,6 +55,25 @@ function searchFood() {
     }       
   }
 }
+
+function searchCrockery() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("inventory-search-crockery");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("InventoryTable crockery");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
 $(".flipper").click(function() {
   var target = $( event.target );
   if ( target.is("a") ) {
@@ -81,12 +100,24 @@ function viewAll(){
     x.style.display="none";
     }
        
-    if(fd.style.display=="none"){
-      fd.style.display="block";
+    if(fd.style.display=="block"){
+      fd.style.display="none";
       }else{
       fd.style.display="none";
       }
         
+    if(fc.style.display=="block"){
+      fc.style.display="none";
+      }else{
+      fc.style.display="none";
+      }
+
+    if(ff.style.display=="block"){
+      ff.style.display="none";
+      }else{
+      ff.style.display="none";
+      }
+
     if(w.style.display=="block"){
       w.style.display="none";
       }else{
@@ -154,7 +185,7 @@ function viewDrinks(){
      z.style.display="none";
     }else{
      z.style.display="none";
-  0 }
+   }
 
 }
 
@@ -342,3 +373,27 @@ $(document).ready(function(){
 //   }
 // }
 
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

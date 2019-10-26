@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Crockery extends Model
 {
     //
-public  function getData($crockeryid){
+public static function getData($crockeryid=0){
  if($crockeryid==0){
      $value=DB::table('crockery')->orderBy('crockeryid','asc');
  }else{
@@ -28,6 +28,7 @@ public function insertData($data){
 
 public static function updateData($crockeryid,$data)
 {
+    
    DB::table('crockery')
    ->where('crockeryid','$crockeryid')
    ->update($data);

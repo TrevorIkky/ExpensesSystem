@@ -17,6 +17,7 @@ class InventoryController extends Controller
        $foods = DB::table('fooditems')->get();
        $users = DB::table('inventory')->get();
        $crockery=DB::table('crockery')->get();
+       print("<pre>".print_r($crockery,true)."</pre>");
         return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods,"crockery"=>$crockery]);
      }
 

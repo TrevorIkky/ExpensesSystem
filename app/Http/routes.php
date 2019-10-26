@@ -61,7 +61,7 @@ Route::get('editf/{}','FoodController@showfood');
 Route::post('editf/{foodTypeNo}','FoodController@editfood');
 Route::get('deletef/{foodTypeNo}','FoodController@destroyfood');
 
-Route::get('edit/{}','CrockeryController@show');
+Route::get('/{crockeryid}','CrockeryController@index');
 Route::post('/save','CrockeryController@save');
 Route::get('/destroy/{crockeryid}','CrockeryController@destroy');
 

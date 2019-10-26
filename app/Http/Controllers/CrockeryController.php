@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Crockery;
 use Illuminate\Http\Request;
 
+
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -17,22 +18,19 @@ class CrockeryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($crockeryid=0)
+    public function index()
     {
         //
         $drinks = DB::table('drinks')->get();
         $foods = DB::table('fooditems')->get();
         $users = DB::table('inventory')->get();
-       // $crockery=DB::table('crockery')->get();
+        $crockery=DB::table('crockery')->get();
+     
+    
 
-        $crockery['data']=Crockery::getData($crockeryid);
-        $crockery['edit']=$crockeryid;
-
-        if($crockeryid>0){
-            $crockery['editData']=Crockery::getData($crockeryid);
-        }
-         return view('inventory')->with("crockery",$crockery);
-      
+        
+        return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods,"crockery"=>$crockery]);
+     
     }
 
     /**
@@ -59,6 +57,7 @@ class CrockeryController extends Controller
     public function create()
     {
         //
+        return view('inventory');
     }
 
     /**
@@ -92,29 +91,26 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( Request $request, $crockeryid)
+    public function editcrockery($crockeryid)
     {
         
-        $crockeryname=$request->input('crockeryname');
-        $quantity=$request->input('quantity');
+        $crock=findOrFail($crockeryid);
         
 
-        DB::update('update crockery set crockeryname = ?, quantity = ? where crockeryid = ?',[$crockeryname,$quantity,$crockeryid]);
-      echo "Record updated successfully.<br/>";
-      echo '<a href = "/inventory">Click Here</a> to go back.';
+        return view('inventory',compact('crock'));
       
     }
     
     public function save(Request $request){
      if($request->input('submit')!=null){
 
-        if($request->input('crockeryname')!=null){
+        if($request->input('editid')!=null){
             $crockeryname=$request->input('crockeryname');
             $quantity=$request->input('quantity');
-            $crockeryid = $request->input('editid');
+            $editid = $request->input('editid');
             if($crockeryname!=''&& $quantity!=''){
                 $data=array("crockeryname"=>$crockeryname,"quantity"=>$quantity);
-                Crockery::updateData($crockeryid,$data);
+                Crockery::updateData($editid,$data);
                 $request->session()->flash('message','Item updated successfully!!!');
             }
         }else{
@@ -142,9 +138,17 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $crockeryid)
     {
         //
+        $crock=Crockery::findOrFail($crockeryid);
+        $crockeryname=$request->input('crockeryname');
+        $quantity=$request->input('quantity');
+        
+
+        DB::update('update crockery set crockeryname = ?, quantity = ? where crockeryid = ?',[$crockeryname,$quantity,$crockeryid]);
+      echo "Record updated successfully.<br/>";
+      echo '<a href = "/inventory">Click Here</a> to go back.';
     }
 
     /**
