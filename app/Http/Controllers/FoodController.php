@@ -28,7 +28,7 @@ class FoodController extends Controller
     }
 
 
-    public function insertfood(Request $request){
+    public function insertFood(Request $request){
       
         
         $foodTypeNo=$request->input('foodTypeNo');
@@ -42,10 +42,20 @@ class FoodController extends Controller
   
         
   
-        $data=array('foodTypeNo'=>$foodTypeNo,'FoodItemName'=>$FoodItemName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
+        $data=array('foodTypeNo'=>$foodTypeNo,'inventoryType'=>2,'FoodItemName'=>$FoodItemName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
         
-        DB::table('fooditems')->insert($data);
-        return redirect()->back(); 
+        $existing = DB::table('fooditems')->where('FoodItemName', '=', $FoodItemName)->first();
+      if (is_null($existing)) {
+         
+         DB::table('fooditems')->insert($data);
+         $request->session()->flash('message','Food Item added successfully');
+         
+         return redirect()->back();
+         } else {
+         
+         $request->session()->flash('message','Food Item already exists!!');
+         return redirect()->back();
+     } 
      }
     /**
      * Show the form for creating a new resource.
@@ -74,13 +84,12 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showfood($foodTypeNo)
+    public function showFood($foodTypeNo)
     {
         //
-      $foods = DB::select('select * from fooditems where foodTypeNo = ?',[$foodTypeNo]);
-      return view('inventoryeditf',['foods'=>$foods]);
-       
-    }
+        $foods = DB::select('select * from fooditems where foodTypeNo = ?', [$foodTypeNo]);
+        return view('inventoryeditf', ['foods' => $foods]);
+     }
 
     /**
      * Show the form for editing the specified resource.
@@ -88,20 +97,22 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editfood(Request $request, $foodTypeNo)
+    public function editFood(Request $request, $foodTypeNo)
     {
         //
-        $FoodItemName=$request->input('FoodItemName');
-        $unitOfMeasurement=$request->input('unitOfMeasurement');
-        $inventoryAmount=$request->input('inventoryAmount');
-        $costPerUnit=$request->input('costPerUnit');
-        $totalCost=$request->input('totalCost');
-        $vendor=$request->input('vendor');
-        $quantity=$request->input('quantity');
-
-        DB::update('update fooditems set FoodItemName = ?, unitOfMeasurement = ?, inventoryAmount = ?, costPerUnit = ?, totalCost = ?, vendor = ?, quantity = ? where foodTypeNo = ?',[$FoodItemName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity,$foodTypeNo]);
-      echo "Record updated successfully.<br/>";
-      echo '<a href = "/inventory">Click Here</a> to go back.';
+        $FoodItemName = $request->input('FoodItemName');
+        $unitOfMeasurement = $request->input('unitOfMeasurement');
+        $inventoryAmount = $request->input('inventoryAmount');
+        $costPerUnit = $request->input('costPerUnit');
+        $totalCost = $request->input('totalCost');
+        $vendor = $request->input('vendor');
+        $quantity = $request->input('quantity');
+  
+        //$data=array('DrinkName'=>$DrinkName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
+        DB::update('update fooditems set FoodItemName = ?, unitOfMeasurement = ?, inventoryAmount = ?, costPerUnit = ?, totalCost = ?, vendor = ?, quantity = ? where foodTypeNo = ?', [$FoodItemName, $unitOfMeasurement, $inventoryAmount, $costPerUnit, $totalCost, $vendor, $quantity, $foodTypeNo]);
+        $request->session()->flash('message','Food Item updated successfully');
+        return redirect()->action('InventoryController@index');
+     
       
     }
 
@@ -123,11 +134,11 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyfood($foodTypeNo)
+    public function destroyFood(Request $request,$foodTypeNo)
     {
-        //
-        DB::delete('delete from fooditems where foodTypeNo=?',[$foodTypeNo]);
-        echo "Record deleted successfully.<br/>";
-        echo '<a href = "/inventory">Click Here</a> to go back.';
+       DB::delete('delete from fooditems where foodTypeNo=?', [$foodTypeNo]);
+       $request->session()->flash('message','Food Item deleted successfully');
+       return redirect()->action('InventoryController@index');
+         
     }
 }

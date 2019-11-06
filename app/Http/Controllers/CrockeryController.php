@@ -25,11 +25,12 @@ class CrockeryController extends Controller
         $foods = DB::table('fooditems')->get();
         $users = DB::table('inventory')->get();
         $crockery=DB::table('crockery')->get();
+        $crock=DB::table('crockery')->get();
      
     
 
         
-        return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods,"crockery"=>$crockery]);
+        return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods,"crockery"=>$crockery,"crock"=>$crock]);
      
     }
 
@@ -39,7 +40,7 @@ class CrockeryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function insertcrockery(Request $request){
+    public function insertCrockery(Request $request){
       
         
         $crockeryid=$request->input('crockeryid');
@@ -48,10 +49,19 @@ class CrockeryController extends Controller
         
         
   
-        $data=array('crockeryid'=>$crockeryid,'crockeryname'=>$crockeryname,"quantity"=>$quantity);
-        
-        DB::table('crockery')->insert($data);
-        return redirect()->back(); 
+        $data=array('crockeryid'=>$crockeryid,'inventoryType'=>3,'crockeryname'=>$crockeryname,"quantity"=>$quantity);
+        $existing = DB::table('crockery')->where('crockeryname', '=', $crockeryname)->first();
+        if (is_null($existing)) {
+           
+           DB::table('crockery')->insert($data);
+           $request->session()->flash('message','Crockery Item added successfully');
+           
+           return redirect()->back();
+           } else {
+           
+           $request->session()->flash('message','Crockery Item already exists!!');
+           return redirect()->back();
+       } 
      }
      
     public function create()
@@ -77,13 +87,12 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($crockeryid)
-    {
-        //
-        $crockery = DB::select('select * from crockery where crockeryid = ?',[$crockeryid]);
-      return view('inventoryeditc',['crockery'=>$crockery]);
-       
-    }
+    public function showCrockery($crockeryid)
+   {
+      //
+      $crockery = DB::select('select * from crockery where crockeryid = ?', [$crockeryid]);
+      return view('inventoryeditc', ['crockery' => $crockery]);
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,14 +100,18 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editcrockery($crockeryid)
+    public function editCrockery(Request $request, $crockeryid)
     {
-        
-        $crock=findOrFail($crockeryid);
-        
-
-        return view('inventory',compact('crock'));
-      
+ 
+       $crockeryname = $request->get('crockeryname');
+       $quantity = $request->get('quantity');
+ 
+       DB::update('update crockery set crockeryname=?, quantity=? where crockeryid=?', [$crockeryname, $quantity, $crockeryid]);
+ 
+ 
+ 
+       $request->session()->flash('message','Crockery Item updated successfully');
+       return redirect()->action('InventoryController@index');
     }
     
     public function save(Request $request){
@@ -111,7 +124,9 @@ class CrockeryController extends Controller
             if($crockeryname!=''&& $quantity!=''){
                 $data=array("crockeryname"=>$crockeryname,"quantity"=>$quantity);
                 Crockery::updateData($editid,$data);
-                $request->session()->flash('message','Item updated successfully!!!');
+                $request->session()->flash('message','Crockery Item updated successfully!!!');
+                
+            
             }
         }else{
             $crockeryname=$request->input('crockeryname');
@@ -138,7 +153,7 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $crockeryid)
+    public function updateData(Request $request, $crockeryid)
     {
         //
         $crock=Crockery::findOrFail($crockeryid);
@@ -157,16 +172,11 @@ class CrockeryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($crockeryid=0,Request $request)
+    public function destroyCrockery(Request $request,$crockeryid)
     {
-        //
-        // DB::delete('delete from crockery where crockeryid=?',[$crockeryid]);
-        // echo "Record deleted successfully.<br/>";
-        // echo '<a href = "/inventory">Click Here</a> to go back.';
-        if($crockeryid!=0){
-            Crockery::deleteData($crockeryid);
-            $request->session()->flash('message','Item deleted successfully');
-        }
-        return redirect()->action('InventoryController@index');
+       DB::delete('delete from crockery where crockeryid=?', [$crockeryid]);
+       $request->session()->flash('message','Crockery Item deleted successfully');
+       return redirect()->action('InventoryController@index');
+         
     }
 }

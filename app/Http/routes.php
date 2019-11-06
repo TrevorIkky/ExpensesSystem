@@ -50,20 +50,20 @@ Route::post('/menu/delete/{id}', 'MenuController@destroy');
 Route::post('/addexp', 'ExpensesController@store');
 
 Route::post('insert','InventoryController@insert');
-Route::post('insertfood','FoodController@insertfood');
-Route::post('insertcrockery','CrockeryController@insertcrockery');
+Route::post('insertFood','FoodController@insertFood');
+Route::post('insertCrockery','CrockeryController@insertCrockery');
 
-Route::get('edit/{foodTypeNo}','InventoryController@show');
-Route::post('edit/{foodTypeNo}','InventoryController@edit');
-Route::get('delete/{foodTypeNo}','InventoryController@destroy');
+Route::get('edit/{DrinkNo}','InventoryController@show');
+Route::post('edit/{DrinkNo}','InventoryController@edit');
+Route::get('delete/{DrinkNo}','InventoryController@destroy');
 
-Route::get('editf/{}','FoodController@showfood');
-Route::post('editf/{foodTypeNo}','FoodController@editfood');
-Route::get('deletef/{foodTypeNo}','FoodController@destroyfood');
+Route::get('editFood/{foodTypeNo}','FoodController@showFood');
+Route::post('editFood/{foodTypeNo}','FoodController@editFood');
+Route::get('deleteFood/{foodTypeNo}','FoodController@destroyFood');
 
-Route::get('/{crockeryid}','CrockeryController@index');
-Route::post('/save','CrockeryController@save');
-Route::get('/destroy/{crockeryid}','CrockeryController@destroy');
+Route::get('editCrockery/{crockeryid}','CrockeryController@showCrockery');
+Route::post('editCrockery/{crockeryid}','CrockeryController@editCrockery');
+Route::get('destroyCrockery/{crockeryid}','CrockeryController@destroyCrockery');
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');

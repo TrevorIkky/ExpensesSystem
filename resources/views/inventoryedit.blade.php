@@ -2,43 +2,43 @@
 @section('main-content')
 @extends('error')
 
-<div class="row">
- <div class="col-md-12">
+
+ <div class="inventoryedit"style="text-align:center;">
      <br>
-     <h1>Edit Records</h1>
+     <h1>Edit Drink Item</h1>
      <br>     
    
     
-     <form method="post" action="/edit/<?php echo $drinks[0]->foodTypeNo?>">
+     <form method="post" action="/edit/<?php echo $drinks[0]->DrinkNo?>">
    
      <input type="hidden" name = "_token" value = "<?php echo csrf_token(); ?>"/>
      @foreach ($drinks as $drink)
-     <div class ="form-group">
-       <input type="text" name="DrinkName" class="form-control" value="{{$drink->DrinkName}}" />
+     <div class="insertfield" >
+       <input style="width:20%;padding-left:20%;" type="text" name="DrinkName" class="insertfield" value="{{$drink->DrinkName}}" />
      </div>
 
-     <div class ="form-group">
-       <input type="text" name="unitOfMeasurement" class="form-control" value="{{$drink->unitOfMeasurement}}" />
+     <div class="insertfield">
+       <input style="width:20%;padding-left:20%;" type="text" name="unitOfMeasurement" class="insertfield" value="{{$drink->unitOfMeasurement}}" />
      </div>
 
-     <div class ="form-group">
-       <input type="text" name="inventoryAmount" class="form-control" value="{{$drink->inventoryAmount}}" />
+     <div class="insertfield">
+       <input style="width:20%;padding-left:20%;" type="text" name="inventoryAmount" class="insertfield" value="{{$drink->inventoryAmount}}" />
      </div>
 
-     <div class ="form-group">
-       <input type="text" name="costPerUnit" class="form-control" value="{{$drink->costPerUnit}}" />
+     <div class="insertfield">
+       <input style="width:20%;padding-left:20%;" type="text" name="costPerUnit" class="insertfield" value="{{$drink->costPerUnit}}" />
      </div>
 
-     <div class ="form-group">
-       <input type="text" name="totalCost" class="form-control" value="{{$drink->totalCost}}" />
+     <div class="insertfield">
+       <input style="width:20%;padding-left:20%;" type="text" name="totalCost" class="insertfield" value="{{$drink->totalCost}}" />
      </div>
 
-     <div class ="form-group">
-       <input type="text" name="vendor" class="form-control" value="{{$drink->vendor}}" />
+     <div class="insertfield">
+       <input style="width:20%;padding-left:10%;" type="text" name="vendor" class="insertfield" value="{{$drink->vendor}}" />
      </div>
 
-     <div class ="form-group">
-       <input type="text" name="quantity" class="form-control" value="{{$drink->quantity}}" />
+     <div class="insertfield">
+       <input style="width:20%;padding-left:20%;"type="text" name="quantity" class="insertfield" value="{{$drink->quantity}}" />
      </div>
 
      <div class ="form-group">
@@ -50,7 +50,7 @@
  </div>
 
 
-</div>
+
 
 
 

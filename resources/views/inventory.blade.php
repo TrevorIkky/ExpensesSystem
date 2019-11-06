@@ -5,376 +5,431 @@
 </div>
 
 @if(Session::has('message'))
-<p>{{ Session::get('message') }}</p>
+<div class="message" id="session">
+    <p>{{ Session::get('message') }}</p>
+</div>
 @endif
 
-<section id="custom">
-    <div id="card-container">
-        <div id="cards">
+<body class="inventorybody">
+    <section id="custom">
+        <div class="container">
+            <div class="row">
 
-            <div class="card-deck">
-
-                <div class="col-auto mb-3">
-                    <div class="card " id="ctest">
-
-                        <img src="images/drinks.jpg" class="card-img-top" alt="drinks">
-                        <div class="card-body">
+                <div class="col s12 m5 l4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/drinks.jpg" alt="drinks" onclick="viewDrinks()">
+                            <a class="btn modal-trigger red btn-floating halfway-fab pulse activator" href="#modal1" ><i class="material-icons">add</i></a>
+                            
+                        </div>
+                        <div class="card-content white-text">
                             <h5 class="card-title" onclick="viewDrinks()">Drinks</h5>
                             <p class="card-text">Views drinks in stock</p>
                         </div>
-                        <div class="card-footer">
-                            <div id="footer-text">
-                                <small class="text-muted"><p id="footer-text-drinks">Viewing Drinks</p></small>
+                        <div class="card-action" id="footer-text-drinks">
+                            <div class="card-notification">
+                                <p>Viewing Drinks</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- <div class="col-auto mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
-                <div class="col-auto mb-3">
+                <div class="col s12 m5 l4">
                     <div class="card">
-                        <img src="images/crockery.jpg" class="card-img-top" alt="crockery">
-                        <div class="card-body">
+                        <div class="card-image">
+                            <img src="images/crockery.jpg" alt="crockery" onclick="viewCrockery()">
+                            <a class="btn modal-trigger red btn-floating halfway-fab pulse activator" href="#modal2"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content white-text">
                             <h5 class="card-title" onclick="viewCrockery()">Crockery</h5>
                             <p class="card-text">Views crockery in stock</p>
                         </div>
-                        <div class="card-footer">
-                            <div id="footer-text">
-                                <small class="text-muted"><p id="footer-text-crockery" style="display: none">Viewing Crockery</p></small>
+                        <div class="card-action" id="footer-text-crockery" style="display: none">
+                            <div class="card-notification">
+                                <p>Viewing Crockery</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-auto mb-3">
+                <div class="col s12 m5 l4">
                     <div class="card">
-                        <img src="images/groceries.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
+                        <div class="card-image">
+                            <img src="images/groceries.jpg" class="card-img-top" alt="FoodItems" onclick="viewFood()">
+                            <a class="btn modal-trigger red btn-floating halfway-fab pulse activator" href="#modal3"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content white-text">
                             <h5 class="card-title" onclick="viewFood()">Food Items</h5>
                             <p class="card-text">Views food items in stock</p>
                         </div>
-                        <div class="card-footer">
-                            <div id="footer-text">
-                                <small class="text-muted"><p id="footer-text-fooditems" style="display: none">Viewing Food Items</p></small>
+                        <div class="card-action" id="footer-text-fooditems" style="display: none">
+                            <div class="card-notification">
+                                <p>Viewing food items</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn" onclick="viewAll()">View All</button>
             </div>
         </div>
-    </div>
-</section>
 
-<div id="InventoryTable" style="display: none">
-    <input class="form-control" id="inventory-search" type="text" onkeyup="search()" placeholder="Search Food Type">
-    <table class="table-bordered" id="Inventory-Table">
 
-        <thead>
-            <tr>
-                <th id="table-head-text" scope="col">Item No.</th>
-                <th id="table-head-text" scope="col">Food Type</th>
-                <th id="table-head-text" scope="col">Unit of Measurement</th>
-                <th id="table-head-text" scope="col">Inventory Amount</th>
-                <th id="table-head-text" scope="col">Cost per Unit</th>
-                <th id="table-head-text" scope="col">Total Cost</th>
-                <th id="table-head-text" scope="col">Vendor</th>
-                <th id="table-head-text" scope="col">Quantity</th>
-            </tr>
-        </thead>
-        <tbody id="inventory-table">
-            @foreach ($users as $user)
-            <tr>
-                <th scope="row">{{ $user->foodTypeID }}</th>
-                <td>{{ $user->foodType }}</td>
-                <td>{{ $user->unitOfMeasurement }}</td>
-                <td>{{ $user->inventoryAmount }}</td>
-                <td>{{ $user->costPerUnit }}</td>
-                <td>{{ $user->totalCost }}</td>
-                <td>{{ $user->vendor }}</td>
-                <td>{{ $user->quantity }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+        <div class="view button">
+            <button type="button" class="btn" onclick="viewAll()">View All</button>
+        </div>
+    </section>
 
-<div id="InventoryTable drinks">
-    <input class="form-control" id="inventory-search-drinks" type="text" onkeyup="searchDrinks()" placeholder="Search Drink Name">
-    <table class="table-bordered" id="Inventory-Table">
-        <thead>
-            <tr>
+    <div class="inventorytable" id="InventoryTable" style="display: none">
+        <div class="searchbar">
+            <input  id="inventory-search" type="text" onkeyup="search()" placeholder="Search Item Type">
+        </div>
+        <table class="centered" id="Inventory-Table">
 
-                <th id="table-head-text" scope="col">Food TypeNo</th>
-                <th id="table-head-text" scope="col">Drink Name</th>
-                <th id="table-head-text" scope="col">Unit of Measurement</th>
-                <th id="table-head-text" scope="col">Inventory Amount</th>
-                <th id="table-head-text" scope="col">Cost per Unit</th>
-                <th id="table-head-text" scope="col">Total Cost</th>
-                <th id="table-head-text" scope="col ">Vendor</th>
-                <th id="table-head-text" scope="col">Quantity</th>
-            </tr>
-
-        </thead>
-        <tbody id="inventory-table-drinks">
-            @foreach ($drinks as $drink)
-            <tr>
-                <th scope="row">{{ $drink->foodTypeNo }}</th>
-                <td>{{ $drink->DrinkName }}</td>
-                <td>{{ $drink->unitOfMeasurement }}</td>
-                <td>{{ $drink->inventoryAmount }}</td>
-                <td>{{ $drink->costPerUnit }}</td>
-                <td>{{ $drink->totalCost }}</td>
-                <td>{{ $drink->vendor }}</td>
-                <td>{{ $drink->quantity }}</td>
-                <td id="edit-column-drinks"><a href='edit/{{ $drink->foodTypeNo }}'>Edit</a></td>
-                <td id="delete-column-drinks"><a href='delete/{{ $drink->foodTypeNo }}'>Delete</a></td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <div id="insertfield">
-        <button type="button" class="btn" onclick="insertDrinks()">Insert New</button>
+            <thead>
+                <tr>
+                    <th>Item No.</th>
+                    <th>Item Type</th>              
+                    <th>Inventory Amount</th>       
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="inventory-table">
+                @foreach ($users as $user)
+                <tr>
+                    <th scope="row">{{ $user->inventoryType }}</th>
+                    <td>{{ $user->itemType }}</td>       
+                    <td>{{ $user->inventoryAmount }}</td>              
+                    <td>{{ $user->quantity }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
-</div>
+    <div class="inventorydrinks" id="InventoryTable drinks">
+        <div class="searchbar">
+            <input id="inventory-search-drinks" type="text" onkeyup="searchDrinks()" placeholder="Search Drink Name">
+        </div>
+        <div class="printIcon">
+        <a class=" blue btn-floating halfway-fab " href="" ><i class="material-icons">print</i></a>
+        
+        </div>
+        
+        <table class="highlight" id="Inventory-Table">
+            <thead>
+                <tr>
 
-<div id="insertform-drinks" style="display: none">
+                    <th>Drink Number</th>
+                    <th>Drink Name</th>
+                    <th>Unit of Measurement</th>
+                    <th>Inventory Amount</th>
+                    <th>Cost per Unit</th>
+                    <th>Total Cost</th>
+                    <th>Vendor</th>
+                    <th>Quantity</th>
+                </tr>
 
-    <form action="insert" id="drinksform" method="POST">
-        {{csrf_field()}}
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="DrinkName" placeholder="Drink Name">
+            </thead>
+            <tbody id="inventory-table-drinks">
+                @foreach ($drinks as $drink)
+                <tr>
+                    <th scope="row">{{ $drink->DrinkNo }}</th>
+                    <td>{{ $drink->DrinkName }}</td>
+                    <td>{{ $drink->unitOfMeasurement }}</td>
+                    <td>{{ $drink->inventoryAmount }}</td>
+                    <td>{{ $drink->costPerUnit }}</td>
+                    <td>{{ $drink->totalCost }}</td>
+                    <td>{{ $drink->vendor }}</td>
+                    <td>{{ $drink->quantity }}</td>
+                    <td id="edit-column-drinks"><a href='edit/{{ $drink->DrinkNo }}'><i class="material-icons">edit</i></a></td>
+                    <td id="delete-column-drinks"><a href='delete/{{ $drink->DrinkNo }}'><i class="material-icons">delete</i></a></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <div id="insertfield">
+            <button type="button" class="btn" onclick="insertDrinks()" style="color:rgb(0, 0, 0)">Insert New</button>
         </div>
 
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="unitOfMeasurement" placeholder="Unit of Measurement">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="inventoryAmount" placeholder="Inventory Amount">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="costPerUnit" placeholder="Cost per Unit">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="totalCost" placeholder="Total Cost">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="vendor" placeholder="Vendor">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="quantity" placeholder="Quantity">
-        </div>
-        <button type="submit" class="button-submit">Submit</button>
-    </form>
-</div>
-
-<div id="InventoryTable fooditems" style="display: none">
-    <input class="form-control" id="inventory-search-food" type="text" onkeyup="searchFood()" placeholder="Search Food Name">
-
-    <table class="table-bordered" id="Inventory-Table">
-        <thead>
-            <tr>
-
-                <th id="table-head-text" scope="col">Food TypeNo</th>
-                <th id="table-head-text" scope="col">Food Item Name</th>
-                <th id="table-head-text" scope="col">Unit of Measurement</th>
-                <th id="table-head-text" scope="col">Inventory Amount</th>
-                <th id="table-head-text" scope="col">Cost per Unit</th>
-                <th id="table-head-text" scope="col">Total Cost</th>
-                <th id="table-head-text" scope="col">Vendor</th>
-                <th id="table-head-text" scope="col">Quantity</th>
-            </tr>
-        </thead>
-        <tbody id="inventory-table-food">
-            @foreach ($foods as $food)
-            <tr>
-                <th scope="row">{{ $food->foodTypeNo }}</th>
-                <td>{{ $food->FoodItemName }}</td>
-                <td>{{ $food->unitOfMeasurement }}</td>
-                <td>{{ $food->inventoryAmount }}</td>
-                <td>{{ $food->costPerUnit }}</td>
-                <td>{{ $food->totalCost }}</td>
-                <td>{{ $food->vendor }}</td>
-                <td>{{ $food->quantity }}</td>
-                <td><a href="editf/{{ $food->foodTypeNo }}">Edit</a></td>
-                <td><a href="deletef/{{ $food->foodTypeNo }}">Delete</a></td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <div id="insertfield">
-        <button type="button" class="btn" onclick="insertFood()">Insert New</button>
     </div>
 
-</div>
+    <div id="insertform-drinks" style="display: none">
 
-<div id="insertform-fooditems" style="display: none">
+        <form action="insert" id="drinksform" method="POST">
+            {{csrf_field()}}
+            <div class="row">
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="DrinkName" placeholder="Drink Name">
 
-    <form action="insertfood" id="fooditemsform" method="POST">
-        {{csrf_field()}}
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="FoodItemName" placeholder="Food Item Name">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="unitOfMeasurement" placeholder="Unit Of Measurement">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="inventoryAmount" placeholder="Inventory Amount">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="costPerUnit" placeholder="Cost Per Unit">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="totalCost" placeholder="Total Cost">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="vendor" placeholder="Vendor">
-        </div>
-
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="quantity" placeholder="Quantity">
-        </div>
-        <button type="submit" class="button-submit">Submit</button>
-    </form>
-</div>
-
-<div id="InventoryTable crockery" style="display: none">
-    <table class="table-bordered" id="Inventory-Table">
-        <thead>
-            <tr>
-
-                <th id="table-head-text" scope="col">Crockery ID</th>
-                <th id="table-head-text" scope="col">Crockery Name</th>
-                <th id="table-head-text" scope="col">Quantity</th>
-
-            </tr>
-        </thead>
-        <tbody id="inventory-table">
-            @foreach ($crockery as $crockery)
-            <tr>
-                <th scope="row">{{ $crockery->crockeryid }}</th>
-                <td>{{ $crockery->crockeryname }}</td>
-                <td>{{ $crockery->quantity }}</td>
-                <td>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Edit</a>
-                </td>
-
-                <td><a href="/destroy/{{ $crockery->crockeryid }}">Delete</a></td>
-            </tr>
-             
-      </tbody>
-      </table>
-</div>
-<div id="insertfield">
-    <button type="button" class="btn" onclick="insertCrockery()">Insert New</button>
-</div>
+                </div>
 
 
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="unitOfMeasurement" placeholder="Unit of Measurement">
 
-<div id="insertform-crockery" style="display: none">
+                </div>
 
-    <form action="insertcrockery" id="crockeryform" method="POST">
-        {{csrf_field()}}
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="inventoryAmount" placeholder="Inventory Amount">
 
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="crockeryname" placeholder="Crockery Name">
-        </div>
+                </div>
 
-        <div class="form-group col-sm-6">
-            <input type="text" class="form-control" name="quantity" placeholder="Quantity">
-        </div>
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="costPerUnit" placeholder="Cost per Unit">
 
-        <button type="submit" class="button-submit">Submit</button>
-    </form>
-</div>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
+                </div>
 
-        <form method="POST" action="/save">
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="totalCost" placeholder="Total Cost">
 
-            <table>
-                <thead>
-                    <tr>
+                </div>
 
-                        <th id="table-head-text" scope="col">Crockery ID</th>
-                        <th id="table-head-text" scope="col">Crockery Name</th>
-                        <th id="table-head-text" scope="col">Quantity</th>
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="vendor" placeholder="Vendor">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($crockery as $crockery)
-                    <tr>
-                        <td colspan='2'>
-                            <h1>Edit record</h1></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">{{ csrf_field() }}</td>
-                    </tr>
-                    <tr>
-                        <td>CrockeryID</td>
-                        <td>
-                            <input type='text' name='crockeryid' readonly value='{{ $crockery->crockeryid }}'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Crockery Name</td>
-                        <td>
-                            <input type='text' name='crockeryname' value='{{ $crockery->crockeryname }}'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Quantity</td>
-                        <td>
-                            <input type='text' name='quantity' value='{{ $crockery->quantity }}'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type='submit' name='submit' value='Submit'>
-                        </td>
+                </div>
 
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="quantity" placeholder="Quantity">
 
+                </div>
+            </div>
+            <button type="submit" class="button-submit">Submit</button>
         </form>
+    </div>
+
+    <div class="inventoryfood" id="InventoryTable fooditems" style="display: none">
+        <div class="searchbar">
+            <input  id="inventory-search-food" type="text" onkeyup="searchFood()" placeholder="Search Food Name">
+        </div>
+        <table class="table-bordered" id="Inventory-Table">
+            <thead>
+                <tr>
+
+                    <th>Food TypeNo</th>
+                    <th>Food Item Name</th>
+                    <th>Unit of Measurement</th>
+                    <th>Inventory Amount</th>
+                    <th>Cost per Unit</th>
+                    <th>Total Cost</th>
+                    <th>Vendor</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="inventory-table-food">
+                @foreach ($foods as $food)
+                <tr>
+                    <th scope="row">{{ $food->foodTypeNo }}</th>
+                    <td>{{ $food->FoodItemName }}</td>
+                    <td>{{ $food->unitOfMeasurement }}</td>
+                    <td>{{ $food->inventoryAmount }}</td>
+                    <td>{{ $food->costPerUnit }}</td>
+                    <td>{{ $food->totalCost }}</td>
+                    <td>{{ $food->vendor }}</td>
+                    <td>{{ $food->quantity }}</td>
+                    <td><a href="editFood/{{ $food->foodTypeNo }}"><i class="material-icons">edit</i></a></td>
+                    <td><a href="deleteFood/{{ $food->foodTypeNo }}"><i class="material-icons">delete</i></a></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <div class="insertbutton"id="insertfield">
+            <button type="button" class="btn" onclick="insertFood()" style="color:rgb(0, 0, 0)" ;>Insert New</button>
+        </div>
 
     </div>
 
-</div><script type="text/javascript" src="{{url ('js/inventory.js') }}" defer></script>
+    <div id="insertform-fooditems" style="display: none">
+
+        <form action="insertFood" id="fooditemsform" method="POST">
+            {{csrf_field()}}
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="FoodItemName" placeholder="Food Item Name">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="unitOfMeasurement" placeholder="Unit Of Measurement">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="inventoryAmount" placeholder="Inventory Amount">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="costPerUnit" placeholder="Cost Per Unit">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="totalCost" placeholder="Total Cost">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="vendor" placeholder="Vendor">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="quantity" placeholder="Quantity">
+            </div>
+            <button type="submit" class="button-submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="inventorycrockery" id="InventoryTable crockery" style="display: none">
+        <div class="searchbar">
+            <input  id="inventory-search-crockery" type="text" onkeyup="searchCrockery()" placeholder="Search Crockery Name">
+        </div>
+        <table class="table-bordered" id="Inventory-Table">
+            <thead>
+                <tr>
+
+                    <th>Crockery ID</th>
+                    <th>Crockery Name</th>
+                    <th>Quantity</th>
+
+                </tr>
+            </thead>
+            <tbody id="inventory-table">
+                @foreach ($crockery as $crockery)
+                <tr>
+                    <th scope="row">{{ $crockery->crockeryid }}</th>
+                    <td>{{ $crockery->crockeryname }}</td>
+                    <td>{{ $crockery->quantity }}</td>
+                    <td>
+                        <a href="editCrockery/{{ $crockery->crockeryid }}"><i class="material-icons">edit</i></a>
+                    </td>
+
+                    <td><a href="destroyCrockery/{{ $crockery->crockeryid }}"><i class="material-icons">delete</i></a></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div id="insertfield">
+            <button type="button" class="btn" onclick="insertCrockery()" style="color:rgb(0, 0, 0)">Insert New</button>
+        </div>
+    </div>
+
+
+
+
+    <div id="insertform-crockery" style="display: none">
+
+        <form action="insertCrockery" id="crockeryform" method="POST">
+            {{csrf_field()}}
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="crockeryname" placeholder="Crockery Name">
+            </div>
+
+            <div class="insertfield">
+                <input type="text" class="insertfield" name="quantity" placeholder="Quantity">
+            </div>
+
+            <button type="submit" class="button-submit">Submit</button>
+        </form>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Insert Drink</h4>
+            <form action="insert" id="drinksform" method="POST">
+                {{csrf_field()}}
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="DrinkName" placeholder="Drink Name">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="unitOfMeasurement" placeholder="Unit of Measurement">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="inventoryAmount" placeholder="Inventory Amount">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="costPerUnit" placeholder="Cost per Unit">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="totalCost" placeholder="Total Cost">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="vendor" placeholder="Vendor">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="quantity" placeholder="Quantity">
+                </div>
+                <button type="submit" class="button-submit">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Insert Crockery</h4>
+            <form action="insertCrockery" id="crockeryform" method="POST">
+                {{csrf_field()}}
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="crockeryname" placeholder="Crockery Name">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="quantity" placeholder="Quantity">
+                </div>
+                <button type="submit" class="button-submit">Submit</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <h4>Insert Food</h4>
+            <form action="insertFood" id="fooditemsform" method="POST">
+                {{csrf_field()}}
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="FoodItemName" placeholder="Food Item Name">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="unitOfMeasurement" placeholder="Unit Of Measurement">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="inventoryAmount" placeholder="Inventory Amount">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="costPerUnit" placeholder="Cost Per Unit">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="totalCost" placeholder="Total Cost">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="vendor" placeholder="Vendor">
+                </div>
+
+                <div class="insertfield">
+                    <input type="text" class="insertfield" name="quantity" placeholder="Quantity">
+                </div>
+
+                <button type="submit" class="button-submit">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="{{url ('js/inventory.js') }}" defer></script>
 <script type="text/javascript" src="/js/inventory.js"></script>
 <script type="text/javascript" src="/js/tables.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>

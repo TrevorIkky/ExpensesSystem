@@ -1,4 +1,3 @@
-
 function searchAll() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("inventory-search");
@@ -14,7 +13,7 @@ function searchAll() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 
@@ -33,7 +32,7 @@ function searchDrinks() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 
@@ -52,7 +51,7 @@ function searchFood() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 
@@ -71,12 +70,12 @@ function searchCrockery() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
   }
 }
 $(".flipper").click(function() {
-  var target = $( event.target );
-  if ( target.is("a") ) {
+  var target = $(event.target);
+  if (target.is("a")) {
     //follow that link
     return true;
   } else {
@@ -85,246 +84,325 @@ $(".flipper").click(function() {
   return false;
 });
 
-function viewAll(){
-  var fd=document.getElementById("footer-text-drinks");
-  var ff=document.getElementById("footer-text-fooditems");
-  var fc=document.getElementById("footer-text-crockery");
-  var w=document.getElementById("InventoryTable crockery");
-  var x=document.getElementById("InventoryTable");
-  var y=document.getElementById("InventoryTable drinks");
-  var z=document.getElementById("InventoryTable fooditems");
-  
-  if(x.style.display=="none"){
-    x.style.display="block";
-    }else{
-    x.style.display="none";
-    }
-       
-    if(fd.style.display=="block"){
-      fd.style.display="none";
-      }else{
-      fd.style.display="none";
-      }
-        
-    if(fc.style.display=="block"){
-      fc.style.display="none";
-      }else{
-      fc.style.display="none";
-      }
+function viewAll() {
+  var fd = document.getElementById("footer-text-drinks");
+  var ff = document.getElementById("footer-text-fooditems");
+  var fc = document.getElementById("footer-text-crockery");
+  var w = document.getElementById("InventoryTable crockery");
+  var x = document.getElementById("InventoryTable");
+  var y = document.getElementById("InventoryTable drinks");
+  var z = document.getElementById("InventoryTable fooditems");
+  var insertDrinks = document.getElementById("insertform-drinks");
+  var insertFood = document.getElementById("insertform-fooditems");
+  var insertCrockery = document.getElementById("insertform-crockery");
 
-    if(ff.style.display=="block"){
-      ff.style.display="none";
-      }else{
-      ff.style.display="none";
-      }
-
-    if(w.style.display=="block"){
-      w.style.display="none";
-      }else{
-      w.style.display="none";
-      }
-
-    if(y.style.display=="block"){
-     y.style.display="none";
-     }else{
-     y.style.display="none";
-     }
-    
-      if(z.style.display=="block"){
-      z.style.display="none";
-      }else{
-      z.style.display="none";
-      }
-
-    }
-
-function viewDrinks(){
-  var fd=document.getElementById("footer-text-drinks");
-  var ff=document.getElementById("footer-text-fooditems");
-  var fc=document.getElementById("footer-text-crockery");
-  var w=document.getElementById("InventoryTable crockery");
-  var x=document.getElementById("InventoryTable drinks");
-  var y=document.getElementById("InventoryTable");
-  var z=document.getElementById("InventoryTable fooditems");
-
-  if(x.style.display=="none"){
-    x.style.display="block";
-  }else{
-    x.style.display="none";
-  }
- 
-  if(fd.style.display=="none"){
-    fd.style.display="block";
-    }else{
-    fd.style.display="none";
-    }
-
-  if(fc.style.display=="block"){
-    fc.style.display="none";
-    }else{
-    fc.style.display="none";
-    }
-
-  if(ff.style.display=="block"){
-      ff.style.display="none";
-    }else{
-      ff.style.display="none";
-    }
-  if(w.style.display=="block"){
-    w.style.display="none";
-    }else{
-    w.style.display="none";
-    }
-  if(y.style.display=="block"){
-    y.style.display="none";
-    }else{
-     y.style.display="none";
-   }
-  
-  if(z.style.display=="block"){
-     z.style.display="none";
-    }else{
-     z.style.display="none";
-   }
-
-}
-
-function viewFood(){
-  var fd=document.getElementById("footer-text-drinks");
-  var ff=document.getElementById("footer-text-fooditems");
-  var fc=document.getElementById("footer-text-crockery");
-  var w=document.getElementById("InventoryTable crockery");
-  var x=document.getElementById("InventoryTable fooditems");
-  var y=document.getElementById("InventoryTable");
-  var z=document.getElementById("InventoryTable drinks");
-  
-
-  if(x.style.display=="none"){
-    x.style.display="block";
-  }else{
-    x.style.display="none";
-  }
-  
-  if(ff.style.display=="none"){
-    ff.style.display="block";
-  }else{
-    ff.style.display="none";
-  }
-  
-  if(fd.style.display=="block"){
-    fd.style.display="none";
-  }else{
-    fd.style.display="none";
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
   }
 
-  if(fc.style.display=="block"){
-    fc.style.display="none";
-    }else{
-    fc.style.display="none";
-    }
-
-  if(w.style.display=="block"){
-    w.style.display="none";
-    }else{
-    w.style.display="none";
-    }
-  
-    if(y.style.display=="block"){
-      y.style.display="none";
-    }else{
-      z
-      y.style.display="none";
-    } 
-    
-   if(z.style.display=="block"){
-     z.style.display="none";
-   }else{
-     z.style.display="none";
-   }
-}
-
-function viewCrockery(){
-
-  var ff=document.getElementById("footer-text-fooditems");
-  var fc=document.getElementById("footer-text-crockery");
-  var fd=document.getElementById("footer-text-drinks");
-  var w=document.getElementById("InventoryTable");
-  var x=document.getElementById("InventoryTable crockery");
-  var y=document.getElementById("InventoryTable drinks");
-  var z=document.getElementById("InventoryTable fooditems");
-
-  if(x.style.display=='none'){
-    x.style.display="block";
-  }else{
-    x.style.display="none";
+  if (fd.style.display == "block") {
+    fd.style.display = "none";
+  } else {
+    fd.style.display = "none";
   }
 
-  if(ff.style.display=='block'){
-    ff.style.display="none";
-  }else{
-    ff.style.display="none";
+  if (fc.style.display == "block") {
+    fc.style.display = "none";
+  } else {
+    fc.style.display = "none";
   }
 
-  if(fc.style.display=='none'){
-    fc.style.display="block";
-  }else{
-    fc.style.display="none";
+  if (ff.style.display == "block") {
+    ff.style.display = "none";
+  } else {
+    ff.style.display = "none";
   }
 
-  if(fd.style.display=='block'){
-    fd.style.display="none";
-  }else{
-    fd.style.display="none";
+  if (w.style.display == "block") {
+    w.style.display = "none";
+  } else {
+    w.style.display = "none";
   }
 
-  if(w.style.display=='block'){
-    w.style.display="none";
-  }else{
-    w.style.display="none";
+  if (y.style.display == "block") {
+    y.style.display = "none";
+  } else {
+    y.style.display = "none";
   }
 
-  if(y.style.display=='block'){
-    y.style.display="none";
-  }else{
-    y.style.display="none";
+  if (z.style.display == "block") {
+    z.style.display = "none";
+  } else {
+    z.style.display = "none";
   }
-
-  if(z.style.display=='block'){
-    z.style.display="none";
-  }else{
-    z.style.display="none";
+  if (insertDrinks.style.display == "block") {
+    insertDrinks.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
+  }
+  if (insertFood.style.display == "block") {
+    insertFood.style.display = "none";
+  } else {
+    insertFood.style.display = "none";
+  }
+  if (insertCrockery.style.display == "block") {
+    insertCrockery.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
   }
 }
 
-function insertDrinks(){
-  var x=document.getElementById("insertform-drinks");
-  if(x.style.display=='none'){
-    x.style.display="block";
-  }else{
-    x.style.display="none";
+function viewDrinks() {
+  var fd = document.getElementById("footer-text-drinks");
+  var ff = document.getElementById("footer-text-fooditems");
+  var fc = document.getElementById("footer-text-crockery");
+  var insertDrinks = document.getElementById("insertform-drinks");
+  var insertFood = document.getElementById("insertform-fooditems");
+  var insertCrockery = document.getElementById("insertform-crockery");
+  var w = document.getElementById("InventoryTable crockery");
+  var x = document.getElementById("InventoryTable drinks");
+  var y = document.getElementById("InventoryTable");
+  var z = document.getElementById("InventoryTable fooditems");
+
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+  if (fd.style.display == "none") {
+    fd.style.display = "block";
+  } else {
+    fd.style.display = "none";
+  }
+
+  if (fc.style.display == "block") {
+    fc.style.display = "none";
+  } else {
+    fc.style.display = "none";
+  }
+
+  if (insertDrinks.style.display == "block") {
+    insertDrinks.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
+  }
+  if (insertFood.style.display == "block") {
+    insertFood.style.display = "none";
+  } else {
+    insertFood.style.display = "none";
+  }
+  if (insertCrockery.style.display == "block") {
+    insertCrockery.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
+  }
+
+  if (ff.style.display == "block") {
+    ff.style.display = "none";
+  } else {
+    ff.style.display = "none";
+  }
+  if (w.style.display == "block") {
+    w.style.display = "none";
+  } else {
+    w.style.display = "none";
+  }
+  if (y.style.display == "block") {
+    y.style.display = "none";
+  } else {
+    y.style.display = "none";
+  }
+
+  if (z.style.display == "block") {
+    z.style.display = "none";
+  } else {
+    z.style.display = "none";
   }
 }
 
-function insertFood(){
-  var x=document.getElementById("insertform-fooditems");
-  if(x.style.display=='none'){
-    x.style.display="block";
-  }else{
-    x.style.display="none";
+function viewFood() {
+  var fd = document.getElementById("footer-text-drinks");
+  var ff = document.getElementById("footer-text-fooditems");
+  var fc = document.getElementById("footer-text-crockery");
+  var w = document.getElementById("InventoryTable crockery");
+  var x = document.getElementById("InventoryTable fooditems");
+  var y = document.getElementById("InventoryTable");
+  var z = document.getElementById("InventoryTable drinks");
+  var insertDrinks = document.getElementById("insertform-drinks");
+  var insertFood = document.getElementById("insertform-fooditems");
+  var insertCrockery = document.getElementById("insertform-crockery");
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+  if (ff.style.display == "none") {
+    ff.style.display = "block";
+  } else {
+    ff.style.display = "none";
+  }
+
+  if (fd.style.display == "block") {
+    fd.style.display = "none";
+  } else {
+    fd.style.display = "none";
+  }
+
+  if (fc.style.display == "block") {
+    fc.style.display = "none";
+  } else {
+    fc.style.display = "none";
+  }
+
+  if (w.style.display == "block") {
+    w.style.display = "none";
+  } else {
+    w.style.display = "none";
+  }
+
+  if (y.style.display == "block") {
+    y.style.display = "none";
+  } else {
+    z;
+    y.style.display = "none";
+  }
+
+  if (z.style.display == "block") {
+    z.style.display = "none";
+  } else {
+    z.style.display = "none";
+  }
+
+  if (insertDrinks.style.display == "block") {
+    insertDrinks.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
+  }
+  if (insertFood.style.display == "block") {
+    insertFood.style.display = "none";
+  } else {
+    insertFood.style.display = "none";
+  }
+  if (insertCrockery.style.display == "block") {
+    insertCrockery.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
   }
 }
 
-function insertCrockery(){
-  var x=document.getElementById("insertform-crockery");
-  if(x.style.display=='none'){
-    x.style.display="block";
-  }else{
-    x.style.display="none";
+function viewCrockery() {
+  var ff = document.getElementById("footer-text-fooditems");
+  var fc = document.getElementById("footer-text-crockery");
+  var fd = document.getElementById("footer-text-drinks");
+  var w = document.getElementById("InventoryTable");
+  var x = document.getElementById("InventoryTable crockery");
+  var y = document.getElementById("InventoryTable drinks");
+  var z = document.getElementById("InventoryTable fooditems");
+  var insertDrinks = document.getElementById("insertform-drinks");
+  var insertFood = document.getElementById("insertform-fooditems");
+  var insertCrockery = document.getElementById("insertform-crockery");
+
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+  if (ff.style.display == "block") {
+    ff.style.display = "none";
+  } else {
+    ff.style.display = "none";
+  }
+
+  if (fc.style.display == "none") {
+    fc.style.display = "block";
+  } else {
+    fc.style.display = "none";
+  }
+
+  if (fd.style.display == "block") {
+    fd.style.display = "none";
+  } else {
+    fd.style.display = "none";
+  }
+
+  if (w.style.display == "block") {
+    w.style.display = "none";
+  } else {
+    w.style.display = "none";
+  }
+
+  if (y.style.display == "block") {
+    y.style.display = "none";
+  } else {
+    y.style.display = "none";
+  }
+
+  if (z.style.display == "block") {
+    z.style.display = "none";
+  } else {
+    z.style.display = "none";
+  }
+
+  if (insertDrinks.style.display == "block") {
+    insertDrinks.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
+  }
+  if (insertFood.style.display == "block") {
+    insertFood.style.display = "none";
+  } else {
+    insertFood.style.display = "none";
+  }
+  if (insertCrockery.style.display == "block") {
+    insertCrockery.style.display = "none";
+  } else {
+    insertDrinks.style.display = "none";
   }
 }
-$(document).ready(function(){
-  $('.modal').modal();
+
+function insertDrinks() {
+  var x = document.getElementById("insertform-drinks");
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function insertFood() {
+  var x = document.getElementById("insertform-fooditems");
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function insertCrockery() {
+  var x = document.getElementById("insertform-crockery");
+  if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+$(document).ready(function() {
+  $(".modal").modal();
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  var elems = document.querySelectorAll(".modal");
+  var instances = M.Modal.init(elems, options);
+});
+$(".message")
+  .delay(3000)
+  .slideUp(300);
+
 // function editDrinks(){
 //   var x=document.getElementById("insertform-drinks");
 //   var y=document.getElementById("edit-column-drinks");
@@ -341,7 +419,6 @@ $(document).ready(function(){
 //     y.style.display="none";
 //   }
 
-  
 //   if(z.style.display=='block'){
 //     z.style.display="none";
 //   }else{
@@ -372,28 +449,3 @@ $(document).ready(function(){
 //     z.style.display="none";
 //   }
 // }
-
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}

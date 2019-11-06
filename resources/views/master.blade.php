@@ -13,7 +13,7 @@
       <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
       <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
-      <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+      
       <link rel="stylesheet" type="text/css" href="css/TonisInventory.css">
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nunito+Sans&display=swap" rel="stylesheet"> 
      <title>@yield('title')</title>
@@ -47,6 +47,7 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 <script type="text/javascript" src = "/js/master.js"></script>
+<script type="text/javascript" src = "/js/masonry.pkgd.min.js.js"></script>
 <script type="text/javascript" src="/js/dropzone.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js" defer></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>

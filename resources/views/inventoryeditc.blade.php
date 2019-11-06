@@ -9,7 +9,7 @@
      <br>     
    
     
-     <form method="post" action="/editc/<?php echo $crockery[0]->crockeryid?>">
+     <form method="post" action="/editCrockery/<?php echo $crockery[0]->crockeryid?>">
     
      <input type="hidden" name = "_token" value = "<?php echo csrf_token(); ?>"/>
      @foreach ($crockery as $crockery)
