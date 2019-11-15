@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoryTable extends Migration
+class InventoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,17 @@ class CreateInventoryTable extends Migration
         //
         Schema::create('inventory', function (Blueprint $table){
             $table->increments('foodTypeNo');
-            $table->string('foodType',150);
+            $table->string('name',150);
             $table->string('unitOfMeasurement',150);
             $table->string('inventoryAmount',150);
             $table->integer('costPerUnit');
             $table->string('totalCost');
-            $table->string('vendor',150);
-            
+            $table->string('vendor',150);       
             $table->integer('quantity');
+            $table->string('url')->nullable();
+            $table->string('type')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

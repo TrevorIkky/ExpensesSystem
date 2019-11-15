@@ -34,7 +34,12 @@ class LoginController extends Controller
             'email' => $request->get('email') ,
             'password'   => $request->get('password'));
         if (Auth::attempt($user_credentials)) {
-            return redirect('login/ok');
+            $currentUser = User::where('email',$request->get('email'))->first();
+            if($currentUser->isUserAdmin()){
+                return redirect('login/ok')->with('user','admin');
+            }else{
+                return redirect('/payments')->with('user','normal');
+            }
         }else{
             return back()->with('Error','Authentication Failed');
         }
@@ -59,7 +64,8 @@ class LoginController extends Controller
 
         User::create([
             'name'  => $request->get('name'),
-        	'email'  => $request->get('email'),
+            'email'  => $request->get('email'),
+            'type'  => 0,
         	'password' => Hash::make($request->get('password')),
         	'remember_token' => str_random(10),
 
@@ -67,7 +73,12 @@ class LoginController extends Controller
 
         $user_credentials = array('email'=> $request->get('email'),'password'=>$request->get('password'));
         if(Auth::attempt($user_credentials)){
-            return redirect('login/ok');
+            $currentUser = User::where('email',$request->get('email'))->first();
+            if($currentUser->isUserAdmin()){
+                return redirect('login/ok')->with('user','admin');
+            }else{
+                return redirect('/payments')->with('user','normal');
+            }   
         }else{
             return back()->with('Error','Login or registration failed please try again.');
         }

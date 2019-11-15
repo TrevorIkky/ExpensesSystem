@@ -29,24 +29,24 @@
                 </ul>
             </div>
 
-            <form id="update-form" action="{{url('/menu/update',['id'=>$item->id])}}">
+            <form id="update-form" method = "POST" action="{{url('/menu/update',['id'=>$item->id])}}">
                 {{csrf_field()}}
                 <div id="modal1" class="modal">
                     <div class="modal-content">
                         <div class="row">
                             <div class="input-field col s6">
-                                <textarea name="food" id="food-textarea" class="materialize-textarea" data-length="30" placeholder="Chicken..." value={ {$item->name}}></textarea>
+                                <textarea name="food" id="food-textarea" class="materialize-textarea" data-length="30" placeholder="Chicken..."  >{{$item->name}}</textarea>
                                 <label for="food-textarea">Food Name</label>
                             </div>
                             <div class="input-field col s6">
-                                <textarea name="amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00" value={ {$item->amount}}></textarea>
+                                <textarea name="amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00" >{{$item->amount}}</textarea>
                                 <label for="amount-textarea">Amount</label>
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea name="description" id="description-textarea" class="materialize-textarea" data-length="50" placeholder="Description(Optional)..." value={ {$item->description}}></textarea>
+                                <textarea name="description" id="description-textarea" class="materialize-textarea" data-length="50" placeholder="Description(Optional)...">{{$item->description}}</textarea>
                                 <label for="description-textarea">Description</label>
                             </div>
                         </div>

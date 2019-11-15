@@ -11,6 +11,7 @@ use Validator;
 use App\Payments;
 use App\Menu;
 use Carbon\Carbon;
+use App\Inventory;
 class PaymentsController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class PaymentsController extends Controller
     }
     public function index()
     {  
-        $payments = Payments::orderBy('created_at','desc')->take(2)->get();
+        $payments = Payments::orderBy('created_at','desc')->take(3)->get();
         $startDate = new Carbon('first day of  this month');
         $endDate  = new Carbon('first day of next month');
         $menu = Menu::all();
@@ -34,8 +35,13 @@ class PaymentsController extends Controller
       
     }
 
-    private function mpesa(){
-        $response = STK::push(1, 254720805200, 'Some Reference', 'Test Payment');
+    public function mpesa(Request $request){
+        $response = STK::push($request->get('amount'), $request->get('number'), 'Food Payment', 'Test Payment');
+        if($response){
+            return redirect('/payments')->with('SUCCESS','Pushed!');
+        }else{
+            return redirect('/payments')->with('FAILED','Error');
+        }
        // $validation = STK::validate($response->CheckoutRequestID);
         //echo print_r($validation);
     }
@@ -52,7 +58,7 @@ class PaymentsController extends Controller
 
     public function searchPayment(Request $request){
         $validator = Validator::make($request->all(),[
-            "phonenumber"=>"required|min:4|max:13",
+            "phonenumber"=>"required|max:13",
         ]);
 
         if($validator->fails()){
@@ -62,7 +68,7 @@ class PaymentsController extends Controller
             $endDate  = new Carbon('first day of next month');
             $menu = Menu::all();
             $monthlyPayments = Payments::whereBetween('created_at', [$startDate,$endDate])->get();
-            $payments = Payments::where('phonenumber', $request->get('phonenumber'))->get();
+            $payments = Payments::where('phonenumber','LIKE', $request->get('phonenumber'))->get();
             return view('payments',['payments'=>$payments,'menus'=>$menu,'monthpayments'=>$monthlyPayments]);
         }
     }
@@ -88,7 +94,11 @@ class PaymentsController extends Controller
                 if(!Payments::create(['receipt'=>$receiptStr,'amount'=>$amount])){
                     return redirect('/payments')->with('FALILED','Unable to add payment'); 
                 }
+
+                Inventory::where('costPerUnit', $amount)->where('inventoryAmount','>',0)
+                ->decrement('inventoryAmount', 1);
             }
+          
             return redirect('/payments')->with('SUCCESS','Payment added successfully');
         }
 

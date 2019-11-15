@@ -26,10 +26,6 @@ Route::get('/expenses',function(){
 });
 
 
-Route::get('inventory','InventoryController@index');
-
-
-
 Route::get('/dashboard','FilterController@index');
 
 
@@ -42,41 +38,44 @@ Route::get('/add','ExpensesController@index');
 
 
 Route::post('/addexp', 'ExpensesController@store');
-Route::get('/menu','MenuController@index');
-Route::post('/addmenu','MenuController@store');
-Route::post('/menu/delete/{id}', 'MenuController@destroy');
+
 
 
 Route::post('/addexp', 'ExpensesController@store');
 
-Route::post('insert','InventoryController@insert');
-Route::post('insertfood','FoodController@insertfood');
-Route::post('insertcrockery','CrockeryController@insertcrockery');
 
-Route::get('edit/{foodTypeNo}','InventoryController@show');
-Route::post('edit/{foodTypeNo}','InventoryController@edit');
-Route::get('delete/{foodTypeNo}','InventoryController@destroy');
 
-Route::get('editf/{}','FoodController@showfood');
-Route::post('editf/{foodTypeNo}','FoodController@editfood');
-Route::get('deletef/{foodTypeNo}','FoodController@destroyfood');
-
-Route::get('edit/{}','CrockeryController@show');
-Route::post('/save','CrockeryController@save');
-Route::get('/destroy/{crockeryid}','CrockeryController@destroy');
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');
 
 
 Route::post('/addexp', 'ExpensesController@store');
-Route::post('/menu/update/{id}','MenuController@update');
+Route::get('/logout','LoginController@auth_logout');
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');
 Route::get('/payments','PaymentsController@index');
 Route::post('/payments/addpayment','PaymentsController@store');
 Route::get('/filter/{month}','FilterController@filter');
-Route::post('/payments/searchpayment','PaymentsController@searchPayment')
+Route::post('/payments/searchpayment','PaymentsController@searchPayment');
+Route::post('/payments/mpesapayment','PaymentsController@mpesa');
+Route::post('/menu/delete/{id}','MenuController@destroy');
+Route::post('/menu/update/{id}','MenuController@update');
+Route::post('/addmenu','MenuController@store');
 
+Route::group(['prefix' => '/inventory'], function () {
+    Route::get('/','InventoryController@index');
+    Route::post('/add','InventoryController@store');
+    Route::post('/update/{id}','InventoryController@update');
+    Route::post('/delete/{id}','InventoryController@destroy');
+    Route::get('/search','InventoryController@search');
+    Route::get('/options','InventoryController@options');
+});
+
+Route::group(['prefix' => 'menu'], function () {
+    Route::get('/','MenuController@index');
+    Route::post('/update/{id}','MenuController@update');
+    Route::post('/addmenu/','MenuController@store');
+});
 ?>

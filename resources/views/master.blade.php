@@ -12,6 +12,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
       <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="/css/inventory.css">
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
      
      
@@ -28,11 +29,12 @@
         <li><a href="{{url('/add')}}">EXPENSES</a></li>
         <li><a href="{{url('/menu')}}">MENU</a></li>
         <li><a href="{{url('/payments')}}">PAYMENTS</a></li>
+          <li><a href="{{url('/logout')}}">LOG OUT</a></li>
 
     </ul>
 </div>
 <div id="main-container" class="main-container">
-    <div class="toolbar">
+    <div id = "toolbar" class="toolbar">
         <h4 id="header-text">Toni's Kitchen</h4>
         <div id="open-nav-bar" class="open-nav-bar">
             <div class="bar"></div>
@@ -49,6 +51,6 @@
 <script type="text/javascript" src = "/js/master.js"></script>
 <script type="text/javascript" src="/js/dropzone.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js" defer></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src = "/js/materialize.min.js"></script>
 </body>
 </html>

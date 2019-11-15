@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password','type'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -32,4 +32,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+    public function isUserAdmin(){
+        if($this->type == 1){
+            return true;
+        }
+        return false;
+    }
 }

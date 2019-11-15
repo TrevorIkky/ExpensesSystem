@@ -14,12 +14,12 @@
     <span id = "error-title">{{$success}}</span>
   </div>
 <script>
-$(document).ready(()=>{
+document.addEventListener("DOMContentLoaded", function(event) { 
   var successDiv = document.getElementById("success-handling")
   setTimeout(()=>{
     successDiv.style.display = "none"
   },5000)
-})
+});
 </script>
 @endif
 

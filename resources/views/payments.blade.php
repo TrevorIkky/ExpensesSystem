@@ -22,34 +22,37 @@
     <form  id="search-payments" method = "POST" action = "{{url('payments/searchpayment')}}">
       {{csrf_field()}}
       <div class="row">
-            <div style="width:86%; margin-right:10px;" class="input-field inline">
-                <input name="phonenumber" id="number" type="number" class="validate" data-length="10">
-                <label for="number">Phone Number</label>
-                <span class="helper-text" data-error="wrong" data-success="right">Enter a phone-number to search for payments</span>
+            <div style="width:86%; margin-right:10px; background:whitesmoke; border-radius:30px;" class="input-field inline">
+                <input style =  "width: 83%; margin-left:30px; margin-top:10px; height:30px; border-bottom: none !important; outline: none !important; font-size: 15px; " placeholder = "Phone Number" name="phonenumber" id="number" type="number" class="validate" data-length="10">               
             </div>
-            <a style="margin-left:15px;" class="dropdown-trigger" href="#" data-target='dropdown1'><i class="material-icons " style="cursor:pointer" >more_vert</i>  </a>
+            <a style="margin-left:45px;" class="dropdown-trigger" href="#" data-target='dropdown1'><i class="material-icons " style="cursor:pointer" >more_vert</i>  </a>
         </div>
     </form>
 
         <ul id='dropdown1' class='dropdown-content'>
             <li><a class="modal-trigger" href="#modal1">Add payment</a></li>
+             <li><a class="modal-trigger" href="#modal2">Mpesa payment</a></li>
         </ul>
 
-        <form id="add-payments-form" method = "POST" action = "{{url('payments/addpayment')}}">
+        <form id="mpesa-payments-form" method = "POST" action = "{{url('payments/mpesapayment')}}">
             {{csrf_field()}}
-            <div id="modal1" class="modal">
+            <div id="modal2" class="modal">
                 <div class="modal-content">
                     <div class="row">
-                    <h4 style = "margin: 10px;">Add Cash Payment</h4>                     
+                    <h4 style = "margin: 10px;">Mpesa Payment</h4>                     
                         <div class="input-field col s12">
                             <textarea name="amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00"></textarea>
                             <label for="amount-textarea">Amount</label>
                         </div>
+                        <div class="input-field col s12">
+                            <textarea name="number" id="number-textarea" class="materialize-textarea" data-length="10" placeholder="07000...."></textarea>
+                            <label for="number-textarea">Phone Number</label>
+                        </div>
                     </div>
                   
                     <div class="end-rtl">
-                        <div id="add-cash" class="update-menu menu-decor">
-                            ADD
+                        <div id="mpesa-push" class="update-menu menu-decor">
+                            PUSH
                         </div>
                         <div style="margin-left:10px; margin-right:20px; margin-top:10px;" class="modal-close">
                             CLOSE
@@ -58,6 +61,37 @@
                 </div>
             </div>
         </form>
+
+
+          <form id="add-payments-form" method = "POST" action = "{{url('payments/addpayment')}}">
+            {{csrf_field()}}
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                    <h4 style = "margin: 10px;">Cash Payment</h4>                     
+                        <div class="input-field col s12">
+                            <textarea name="amount" id="amount-textarea" class="materialize-textarea" data-length="10" placeholder="KES 0.00"></textarea>
+                            <label for="amount-textarea">Amount</label>
+                        </div>
+                    </div>
+                  
+                    <div class="end-rtl">
+                        <div id="add-cash" class="update-menu menu-decor">
+                            ADD CASH
+                        </div>
+                        <div style="margin-left:10px; margin-right:20px; margin-top:10px;" class="modal-close">
+                            CLOSE
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+@if(Session::get('user') == 'normal')
+<script>
+$('#open-nav-bar').hide();
+</script>
+@endif        
 
 
   @if(count($payments) > 0)
@@ -91,11 +125,11 @@
     </div> 
 </div>
 
-  @endif
+@endif
 
 
  
-<script>
+<script defer>
 window.onload = function() {
     
 
@@ -104,6 +138,10 @@ $("#number").on('keyup', function (e) {
       $("#search-payments").submit();
     }
 });
+
+$('#mpesa-push').on('click',function(){
+     $("#mpesa-payments-form").submit();
+})
 
 
 	var payments = {!!json_encode($monthpayments)!!}

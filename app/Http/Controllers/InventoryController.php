@@ -4,110 +4,190 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Inventory;
+use Log;
 
 class InventoryController extends Controller
 {
-    //
-    public function index() {
-       $drinks = DB::table('drinks')->get();
-       $foods = DB::table('fooditems')->get();
-       $users = DB::table('inventory')->get();
-       $crockery=DB::table('crockery')->get();
-        return view('inventory',['users'=>$users,'drinks'=>$drinks,"foods"=>$foods,"crockery"=>$crockery]);
-     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+        $inventory = Inventory::orderBy('created_at','desc')->take(40)->get();
+        return view('inventory',['inventory'=>$inventory]);
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
 
-   
+    }
 
-   public function insert(Request $request){
-      
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+        $validator = Validator::make($request->all(),[
+            "name"=>"required",
+            "measurement"=>"required",
+            "qty"=>"required",
+            "cost"=>"required|numeric",
+            "vendor"=>"required",
+          
+        ]);
+
+        if($validator->fails()){
+            return redirect('/inventory')->withErrors($validator)->withInput();
+        }else{
         
-      $DrinkName=$request->input('DrinkName');
-      $unitOfMeasurement=$request->input('unitOfMeasurement');
-      $inventoryAmount=$request->input('inventoryAmount');
-      $costPerUnit=$request->input('costPerUnit');
-      $totalCost=$request->input('totalCost');
-      $vendor=$request->input('vendor');
-      $quantity=$request->input('quantity');
+            if(Inventory::create([
+                "name"=>$request->get("name"),
+                "unitOfMeasurement"=>$request->get("measurement"),
+                "inventoryAmount"=>$request->get("qty"),
+                "costPerUnit"=>$request->get("cost"),
+                "vendor"=>$request->get("vendor"),
+                "quantity"=>$request->get("qty"),
+                "type"=>$request->get("type"),
+                "totalCost"=> ($request->get("cost") *  $request->get("qty"))
+            
+            ])){
+                return back()->with("SUCCESS","Added");
+            }else{
+                return back()->with("FAILED","Error, Unable to add!"); 
+            }
+        }
+    }
 
-      
-
-      $data=array('DrinkName'=>$DrinkName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
-      
-      DB::table('drinks')->insert($data);
-      return redirect()->back(); 
-   }
-
-
-   public function create(){
-      return view('inventory');
-   }
-
-   public function edit(Request $request, $foodTypeNo){
-      //$posts=DB::select('select * from drinks where FoodTypeNo=?',[$drink]);
-      $DrinkName=$request->input('DrinkName');
-      $unitOfMeasurement=$request->input('unitOfMeasurement');
-      $inventoryAmount=$request->input('inventoryAmount');
-      $costPerUnit=$request->input('costPerUnit');
-      $totalCost=$request->input('totalCost');
-      $vendor=$request->input('vendor');
-      $quantity=$request->input('quantity');
-
-      //$data=array('DrinkName'=>$DrinkName,"unitOfMeasurement"=>$unitOfMeasurement,"inventoryAmount"=>$inventoryAmount,"costPerUnit"=>$costPerUnit,"totalCost"=>$totalCost,"vendor"=>$vendor,"quantity"=>$quantity);
-      DB::update('update drinks set DrinkName = ?, unitOfMeasurement = ?, inventoryAmount = ?, costPerUnit = ?, totalCost = ?, vendor = ?, quantity = ? where foodTypeNo = ?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity,$foodTypeNo]);
-      echo "Record updated successfully.<br/>";
-      echo '<a href = "/inventory">Click Here</a> to go back.';
-      
-      
-   }  
-
-   public function show($foodTypeNo)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
     {
         //
-        $drinks = DB::select('select * from drinks where foodTypeNo = ?',[$foodTypeNo]);
-      return view('inventoryedit',['drinks'=>$drinks]);
-       
+
+        $inventory = Inventory::where('name', $request->input('query'))
+               ->orderBy('name', 'desc')
+               ->take(10)
+               ->get();
+
+      return view('inventory',['inventory'=>$inventory]);
+
     }
-   
-    public function i_index()
+
+    public function options(Request $request)
     {
         //
-        $posts = Post::all();
+        $sign = ">";
+        $getOption = $request->input('options');
+        if($getOption != '1'){
+            $sign = "=";
+        }
 
-        return view('posts.inventoryindex', compact('posts'));
+        $inventory = Inventory::where('inventoryAmount', $sign, 0)
+               ->get();
+
+      return view('inventory',['inventory'=>$inventory]);
+
     }
-   public function update(Request $request,Post $post){
-   
-      $DrinkName=$request->get('DrinkName');
-      $unitOfMeasurement=$request->get('unitOfMeasurement');
-      $inventoryAmount=$request->get('inventoryAmount');
-      $costPerUnit=$request->get('costPerUnit');
-      $totalCost=$request->get('totalCost');
-      $vendor=$request->get('vendor');
-      $quantity=$request->get('quantity');
 
-      $data=DB::update('update drinks set DrinkName=?, unitOfMeasurement=?, inventoryAmount=?, costPerUnit=?, totalCost=?, vendor=?, quantity=? where FoodTypeNo=?',[$DrinkName,$unitOfMeasurement,$inventoryAmount,$costPerUnit,$totalCost,$vendor,$quantity]);
-      
-      if($post){
-        $red=redirect('post.inventoryindex')->with('success','Data has been updated');
-      }else{
-         $red=redirect('post.inventoryshow'.$post)->with('danger','Error');
-      }
-   
-      DB::table('drinks')->update($data);
-      return redirect()->back();
 
-   } 
-   
-   public function destroy($foodTypeNo){
-     DB::delete('delete from drinks where foodTypeNo=?',[$foodTypeNo]);
-     echo "Record deleted successfully.<br/>";
-     echo '<a href = "/inventory">Click Here</a> to go back.';
-    
-   }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $url = "noimg";
+
+        if($request->file('image')){
+            $uploadedImage = $request->file('image');
+            $allowedExtensions = array("png","jpg","jpeg");
+            if(in_array(strtolower($uploadedImage->getClientOriginalExtension()),$allowedExtensions)){
+               if($uploadedImage->move('uploads',$uploadedImage->getClientOriginalName())){
+               $url =  '/uploads/'.$uploadedImage->getClientOriginalName();
+                }
+            }
+        }else{
+            $url = $request->get('imgUrl');
+        }
+
+
+
+        $validator = Validator::make($request->all(),[
+            "name"=>"required",
+            "quantity"=>"required",
+            "inv-amt"=>"required|numeric",
+            "costPerItem"=>"required|numeric",
+            "vendor"=>"required",
+          
+        ]);
+
+        if($validator->fails()){
+            return redirect('/inventory')->withErrors($validator)->withInput();
+        }else{
+            $updateData = [ "name"=>$request->get("name"),
+            "inventoryAmount"=>$request->get("inv-amt"),
+            "costPerUnit"=>$request->get("costPerItem"),
+            "vendor"=>$request->get("vendor"),
+            "quantity"=>$request->get("quantity"),
+            "url"=>$url,
+        ];
+            if(Inventory::where('foodTypeNo', $id)
+            ->update($updateData)){
+                return back()->with("SUCCESS","Updated");
+            }else{
+                return back()->with("FAILED","Error, Unable to update!"); 
+            }
+        }      
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+         if(Inventory::where('foodTypeNo', $id)->delete()){
+            return back()->with("SUCCESS","Deleted");
+        }else{
+            return back()->with("FAILED","Error, Unable to delete!"); 
+        }
+    }
 }

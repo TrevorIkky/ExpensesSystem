@@ -113,7 +113,7 @@ class MenuController extends Controller
         if($validator->fails()){
             return redirect('/menu')->withErrors($validator);
         }else{
-             $description = ($request->get('description') == '') ? $request->get('description') : '';
+             $description = ($request->get('description') == '') ? '' :$request->get('description') ;
              if(DB::table('menu')
              ->where('id',$id)
              ->update(['name'=>$request->get('food'), 'amount'=> $request->get('amount'), 'description'=>$description])){
