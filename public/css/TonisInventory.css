@@ -1,0 +1,237 @@
+body {
+  background: #ff000000;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.863),
+    rgba(241, 241, 241, 0.76)
+  );
+}
+
+#inventory {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+.form-group {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+#card-container {
+  background: #ffffffb6;
+}
+#cards {
+  margin-top: 5%;
+  margin-left: 20%;
+}
+
+.clearfix {
+  overflow: auto;
+}
+.card {
+  width: 18rem;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  background-color: transparent;
+  overflow: hidden;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.card-action {
+  text-align: center;
+}
+.card-notification {
+  margin-top: 1px;
+}
+.card::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: rgb(192, 0, 250);
+  transition: width 0.3s;
+}
+.fcard {
+  background-color: transparent;
+
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+.fcard:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front {
+  backface-visibility: hidden;
+}
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.card:hover::after {
+  width: 100%;
+  transition: width 0.3s;
+}
+.card-title {
+  text-align: center;
+  color: #000;
+}
+
+.card-text {
+  word-wrap: break-word;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #000;
+}
+.card-footer {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+#footer-text {
+  text-shadow: #eb28fd;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
+.btn btn-success {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+#table-head-text {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}
+#InventoryTable drinks{
+    width: 20%;
+}
+#insertform-drinks {
+  width: 50%;
+  height: 30%;
+  margin-left: 20%;
+  color: #e9ecef;
+}
+#drinks-form {
+  margin-left: 30%;
+  color: #e9ecef;
+}
+#insertform-crockery {
+  margin-left: 30%;
+  color: #e9ecef;
+}
+#editform-drinks {
+  margin-left: 400%;
+  color: #e9ecef;
+}
+
+#insertform-fooditems {
+  margin-left: 30%;
+  color: #e9ecef;
+}
+.insertform {
+  margin-left: 50%;
+}
+.form-control:focus {
+  border-color: #eb28fd !important;
+  border-width: 2px !important;
+}
+.button-submit {
+  background-color: rgb(223, 24, 241);
+  border-radius: 30px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border: #eb28fd;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100px;
+  height: 25px;
+ 
+}
+.btn {
+  background-color: rgb(223, 24, 241) !important;
+  border-radius: 12px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border: #eb28fd;
+}
+.modal {
+  width: 40% !important ;
+  height:auto !important ;
+  position: absolute;
+  text-align: center;
+}
+#custom {
+  color: #000;
+}
+#session {
+  background-color: #fd28a4;
+  width: 250px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.inventorybody{
+    text-align: center;
+    background-color: antiquewhite;
+}
+.inventorytable{
+    width: 90%;
+    padding-left: 17%;
+}
+.inventorydrinks{
+    width: 90%;
+    padding-left: 17%;
+}
+.inventoryfood{
+    width: 90%;
+    padding-left: 17%;
+}
+.inventorycrockery{
+    width: 90%;
+    padding-left: 17%;
+}
+.inventoryedit{
+    width: 90%;
+    padding-left: 17%;
+}
+.searchbar{
+    width: 25%;
+    color: #000;
+    height: 20%;
+    border-radius: 2px;
+}
+.insertbutton{
+    margin-top: 10%;
+}
+.insertfield{
+    width: 70%;
+    padding-left: 20%;
+}
+.printIcon{
+   position: fixed;
+    bottom: 70;
+    right: 0;
+    transform: translateZ(0);-webkit-transform: translateZ(0);
+    
+}

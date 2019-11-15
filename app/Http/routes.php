@@ -41,10 +41,28 @@ Route::post('/addexp', 'ExpensesController@store');
 
 
 
+<<<<<<< HEAD
 Route::post('/addexp', 'ExpensesController@store');
 
 
 
+=======
+Route::post('insert','InventoryController@insert');
+Route::post('insertFood','FoodController@insertFood');
+Route::post('insertCrockery','CrockeryController@insertCrockery');
+
+Route::get('edit/{DrinkNo}','InventoryController@show');
+Route::post('edit/{DrinkNo}','InventoryController@edit');
+Route::get('delete/{DrinkNo}','InventoryController@destroy');
+
+Route::get('editFood/{foodTypeNo}','FoodController@showFood');
+Route::post('editFood/{foodTypeNo}','FoodController@editFood');
+Route::get('deleteFood/{foodTypeNo}','FoodController@destroyFood');
+
+Route::get('editCrockery/{crockeryid}','CrockeryController@showCrockery');
+Route::post('editCrockery/{crockeryid}','CrockeryController@editCrockery');
+Route::get('destroyCrockery/{crockeryid}','CrockeryController@destroyCrockery');
+>>>>>>> 8bf12c6cd3296751120a1dd9868d22b12dbb4c9c
 
 Route::post('/addexp', 'ExpensesController@store');
 Route::post('/menu/update/{id}','MenuController@update');

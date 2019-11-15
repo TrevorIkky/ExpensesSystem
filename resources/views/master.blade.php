@@ -14,8 +14,13 @@
       <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
         <link rel="stylesheet" type="text/css" href="/css/inventory.css">
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
+<<<<<<< HEAD
      
      
+=======
+      
+      <link rel="stylesheet" type="text/css" href="css/TonisInventory.css">
+>>>>>>> 8bf12c6cd3296751120a1dd9868d22b12dbb4c9c
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nunito+Sans&display=swap" rel="stylesheet"> 
      <title>@yield('title')</title>
 </head>
@@ -49,6 +54,7 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript" src="/js/materialize.min.js" defer></script>
 <script type="text/javascript" src = "/js/master.js"></script>
+<script type="text/javascript" src = "/js/masonry.pkgd.min.js.js"></script>
 <script type="text/javascript" src="/js/dropzone.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js" defer></script>
 <script type="text/javascript" src = "/js/materialize.min.js"></script>
